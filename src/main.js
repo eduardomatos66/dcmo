@@ -30,4 +30,9 @@ resetBtn.addEventListener('click', () => {
 // Hook up highlight toggle
 highlightCb.addEventListener('change', (e) => {
   engine.setHighlightState(e.target.checked);
+  
+  const legend = document.getElementById('target-legend');
+  if (legend) {
+    legend.style.display = e.target.checked ? 'flex' : 'none';
+  }
 });
