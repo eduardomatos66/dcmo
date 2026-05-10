@@ -1,0 +1,85 @@
+{
+  "id": "start_pump",
+  "title": "Turn on panel and start pump",
+  "steps": [
+    {
+      "instruction": "Turn on the panel by turning the PUSH BUTTON ENABLE switch to position 1.",
+      "target": {
+        "row": 6,
+        "col": 9
+      },
+      "expectedState": "pos-right",
+      "onSuccess": {
+        "startBlink": [
+          {
+            "row": 3,
+            "col": 12
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Press the blinking ALARMS RESET button.",
+      "target": {
+        "row": 3,
+        "col": 12
+      },
+      "expectedState": "click",
+      "onSuccess": {
+        "stopBlink": [
+          {
+            "row": 3,
+            "col": 12
+          }
+        ],
+        "turnOff": [
+          {
+            "row": 3,
+            "col": 12
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Press the PUMP MOTOR START button. It will blink and then stay solid.",
+      "target": {
+        "row": 6,
+        "col": 3
+      },
+      "expectedState": "click",
+      "onSuccess": {
+        "delay": 2000,
+        "blinkThenSolid": [
+          {
+            "row": 6,
+            "col": 3,
+            "blinks": 4
+          }
+        ],
+        "solid": [
+          {
+            "row": 2,
+            "col": 5,
+            "delay": 2000
+          },
+          {
+            "row": 2,
+            "col": 8,
+            "delay": 2000
+          },
+          {
+            "row": 6,
+            "col": 4,
+            "delay": 2000
+          },
+          {
+            "row": 6,
+            "col": 5,
+            "delay": 2000
+          }
+        ],
+        "enablePanel": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+| Row | Col | Label                                 | Control Type                             | Color / Style |
+| --- | --- | ------------------------------------- | ---------------------------------------- | ------------- |
+| 1   | 1   | METAL LADLE MAN. O AUTO               | 3-position selector switch               | Black         |
+| 1   | 2   | METAL LADLE POUR O DRAIN              | 3-position selector switch               | Black         |
+| 1   | 3   | METAL LADLE FORWARD                   | Momentary push button                    | Black         |
+| 1   | 4   |                                       | Blank / dummy push button                | Black         |
+| 1   | 5   | EXTRACTOR ROBOT 0 1                   | Illuminated selector switch              | Green         |
+| 1   | 6   | CASTING NOT OK ROBOT RESET            | Illuminated push button                  | Blue          |
+| 1   | 7   | INSERTS LOADING                       | Illuminated push button                  | Blue          |
+| 1   | 8   |                                       | Blank / dummy push button                | Black         |
+| 1   | 9   |                                       | Selector switch                          | Red           |
+| 1   | 10  | SPRAYER 0 1                           | 3-position selector switch               | Green         |
+| 1   | 11  | DIE LUBRICATION                       | Illuminated push button                  | White         |
+| 1   | 12  |                                       | Blank / dummy push button                | Black         |
+| 2   | 1   | BACKWARD + LADLE START                | Momentary push button                    | Black         |
+| 2   | 2   | LADLE HOME POSITION                   | Illuminated mushroom push button         | Green         |
+| 2   | 3   |                                       | Blank / dummy push button                | Black         |
+| 2   | 4   | HOOD SUCTION START/STOP               | Blank / dummy push button                | Black         |
+| 2   | 5   | VACUUM INSERTED 0 1                   | Illuminated push button                  | Green         |
+| 2   | 6   | VACUUM TEST                           | Illuminated push button                  | Blue          |
+| 2   | 7   | CENTRAL EJECTION UNLOCK / LOCKED      | 3-position selector switch               | Black         |
+| 2   | 8   | CENTRAL EJECTION LOCKED               | Pilot light indicator                    | Green         |
+| 2   | 9   | DIE SUPPORT MOBIL PLATEN FORW O BACKW | 3-position selector switch               | Black         |
+| 2   | 10  |                                       | Blank / dummy push button                | Black         |
+| 2   | 11  |                                       | Blank / dummy push button                | Black         |
+| 2   | 12  |                                       | Blank / dummy push button                | Black         |
+| 3   | 1   | DIE MOUNTING 0 1                      | 2-position selector switch               | Black         |
+| 3   | 2   | SEMIAUTOMATIC CYCLE MAN AUT           | 2-position selector switch               | White         |
+| 3   | 3   | STOP AT CYCLE END                     | Illuminated push button                  | Red           |
+| 3   | 4   | CYCLE START                           | Illuminated push button                  | Blue          |
+| 3   | 5   | AUTOREDUCTION 2ND PHASE RESET         | Illuminated push button                  | White         |
+| 3   | 6   | INTENSIFICATION WITH DIE OPEN         | Momentary push button                    | Black         |
+| 3   | 7   | PLUNGER BACK. O FORW.                 | 3-position selector switch               | Black         |
+| 3   | 8   | INJECTION                             | Pilot light indicator                    | Blue          |
+| 3   | 9   | REQUEST FOR DIE INSPECTION            | Illuminated push button                  | White         |
+| 3   | 10  | INJECTION PLUNGER COOLING MAN. O AUTO | 3-position selector switch               | Green         |
+| 3   | 11  | COOLING FIXED PLATEN MAN. O AUTO      | 3-position selector switch               | Green         |
+| 3   | 12  | ALARMS RESET                          | Illuminated push button                  | Orange        |
+| 4   | 1   | HIGH PRESSURE                         | Momentary push button                    | Black         |
+| 4   | 2   |                                       | Blank / dummy push button                | Black         |
+| 4   | 3   | OPENING                               | Momentary push button                    | Black         |
+| 4   | 4   | CENTRAL EJECTION BACK. O FORW.        | 3-position selector switch               | Blue          |
+| 4   | 5   | BRAKE UNLOCK SAFETY DOOR MOTOR        | Momentary push button                    | Black         |
+| 4   | 6   | OP. O CL.                             | Guarded toggle switch                    | Black         |
+| 4   | 7   |                                       | Blank / dummy push button                | Black         |
+| 4   | 8   | COREPULLS FORW. 0 BACKW.              | 12-position rotary selector switch       | Black         |
+| 4   | 9   | CONTINUATION                          | Rotary selector extension / continuation | Black         |
+| 4   | 10  | FORW 0 BACKW                          | 3-position selector switch               | Black         |
+| 4   | 11  | DISCHARGE CORE PULL M P PRESSURE      | Momentary push button                    | Black         |
+| 4   | 12  | DISCHARGE CORE PULL P P PRESSURE      | Momentary push button                    | Black         |
+| 5   | 1   | CENTRAL LUBRICATION                   | Illuminated push button                  | White         |
+| 5   | 2   | GEAR LUBRICATION                      | Illuminated push button                  | White         |
+| 5   | 3   | PLUNGER LUBRICATION                   | Illuminated push button                  | White         |
+| 5   | 4   | TIE BAR REMOVAL 1 1+2 2               | 3-position selector switch               | Black         |
+| 5   | 5   | TIE BAR OUT 0 IN                      | 3-position selector switch               | Black         |
+| 5   | 6   |                                       | Blank / dummy push button                | Black         |
+| 5   | 7   | DIE STAMP DISPLACEMENT FORW. 0 BACK.  | 3-position selector switch               | White         |
+| 5   | 8   | SQUEEZE 1 MP. FORWARD                 | Momentary push button                    | Black         |
+| 5   | 9   | SQUEEZE 2 MP. FORWARD                 | Momentary push button                    | Black         |
+| 5   | 10  | SQUEEZE 1 FP. FORWARD                 | Momentary push button                    | Black         |
+| 5   | 11  | SQUEEZE 2 FP. FORWARD                 | Momentary push button                    | Black         |
+| 5   | 12  |                                       | Blank / dummy push button                | Black         |
+| 6   | 1   | EMERGENCY                             | Emergency stop mushroom button           | Red           |
+| 6   | 2   | PUMP MOTOR OFF                        | Momentary push button                    | Black         |
+| 6   | 3   | PUMP MOTOR START                      | Illuminated push button                  | White         |
+| 6   | 4   | TIE BAR 1 INSERTED                    | Pilot light indicator                    | Green         |
+| 6   | 5   | TIE BAR 2 INSERTED                    | Pilot light indicator                    | Green         |
+| 6   | 6   | ROBOT MANUAL PART REMOVE              | Momentary push button                    | Black         |
+| 6   | 7   |                                       | Blank / dummy push button                | Black         |
+| 6   | 8   | RUN OUT CELL                          | Illuminated push button                  | White         |
+| 6   | 9   | PUSH BUTTON ENABLE 0 1                | 2-position selector switch               | Black         |
+| 6   | 10  | PANEL CONTROL ENABLE                  | Pilot light indicator                    | White         |
+| 6   | 11  | DCM HOME                              | Illuminated mushroom push button         | Green         |
+| 6   | 12  | LAMP TEST                             | Momentary push button                    | Blue          |

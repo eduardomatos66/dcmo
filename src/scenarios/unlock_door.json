@@ -1,0 +1,12 @@
+{
+  "id": "unlock_door",
+  "title": "Unlock DCM safety door",
+  "steps": [
+    {
+      "instruction": "Press the BRAKE UNLOCK SAFETY DOOR MOTOR button to release the gates.",
+      "target": { "row": 4, "col": 5 },
+      "expectedState": "click",
+      "onSuccess": { "enablePanel": true }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "stop_cycle_ladle",
+  "title": "Stop cycle and wait for ladle to reach HOME position",
+  "steps": [
+    {
+      "instruction": "Press the STOP AT CYCLE END button to request the cycle to stop.",
+      "target": { "row": 3, "col": 3 },
+      "expectedState": "click",
+      "onSuccess": { "startBlink": [{ "row": 2, "col": 2 }] }
+    },
+    {
+      "instruction": "Wait and confirm the Ladle's arrival by simulating a click on the LADLE HOME POSITION button.",
+      "target": { "row": 2, "col": 2 },
+      "expectedState": "click",
+      "onSuccess": { "solid": [{ "row": 2, "col": 2 }], "enablePanel": true }
+    }
+  ]
+}

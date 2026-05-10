@@ -1,0 +1,12 @@
+{
+  "id": "ladle_home",
+  "title": "Set Ladle to Home position",
+  "steps": [
+    {
+      "instruction": "Press the LADLE HOME POSITION button to send the Ladle to its home position.",
+      "target": { "row": 2, "col": 2 },
+      "expectedState": "click",
+      "onSuccess": { "solid": [{ "row": 2, "col": 2 }], "enablePanel": true }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "start_cycle",
+  "title": "Start execution cycle",
+  "steps": [
+    {
+      "instruction": "Set the SEMIAUTOMATIC CYCLE switch to the AUT position.",
+      "target": { "row": 3, "col": 2 },
+      "expectedState": "pos-right",
+      "onSuccess": { "startBlink": [{ "row": 3, "col": 4 }] }
+    },
+    {
+      "instruction": "Press the blinking CYCLE START button to begin the cycle.",
+      "target": { "row": 3, "col": 4 },
+      "expectedState": "click",
+      "onSuccess": { "solid": [{ "row": 3, "col": 4 }], "enablePanel": true }
+    }
+  ]
+}

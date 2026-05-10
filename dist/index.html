@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador de Painel de Máquina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-CrsJ0bag.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dm_OZn15.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="status-area">
+        <div class="machine-view">
+          <!-- Placeholder for machine image -->
+          <img src="/assets/Generated3-DLEB9nQ8.png" alt="Status da Máquina" id="machine-image" onerror="this.src='https://via.placeholder.com/800x400/222222/555555?text=MAQUINA+VIRTUAL'" />
+          <div class="overlay-status" id="overlay-status">SYSTEM READY</div>
+        </div>
+        <div class="digital-log">
+          <div class="log-header">DIAGNOSTICS & STATUS LOG</div>
+          <div id="log-content" class="log-content">
+            <div class="log-entry system">> SISTEMA INICIALIZADO</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel-area">
+        <div class="panel-grid" id="panel-grid">
+          <!-- Botões serão inseridos dinamicamente aqui via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
