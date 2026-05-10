@@ -117,7 +117,18 @@ export class ScenarioEngine {
           }
         }
         
-        // Efeitos visuais a serem checados (Amarelo)
+        // Elementos que apenas devem ser verificados visualmente (Amarelo)
+        if (step.check) {
+          step.check.forEach(t => {
+            const index = (t.row - 1) * 12 + (t.col - 1);
+            const cell = this.grid.querySelector(`[data-grid-index="${index}"]`);
+            if (cell && !cell.classList.contains('target-highlight')) {
+              cell.classList.add('check-highlight');
+            }
+          });
+        }
+        
+        // Efeitos visuais a serem checados após a ação (Amarelo)
         if (step.onSuccess) {
           const effects = step.onSuccess;
           const arrays = [effects.solid, effects.startBlink, effects.stopBlink, effects.blinkThenSolid, effects.turnOff];
@@ -142,7 +153,7 @@ export class ScenarioEngine {
       if (this.currentScenario && this.currentScenario.steps.length === 0) {
         this.instructionElement.textContent = "Free Mode Active. Interact with the panel freely.";
       } else {
-        this.instructionElement.textContent = "Training Completed. Panel unlocked for free operation.";
+        this.instructionElement.textContent = this.currentScenario.completionMessage || "Training Completed. Panel unlocked for free operation.";
       }
       this.instructionElement.classList.add('completed');
       return;

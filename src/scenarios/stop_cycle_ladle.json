@@ -1,18 +1,63 @@
 {
   "id": "stop_cycle_ladle",
   "title": "Stop cycle and wait for ladle to reach HOME position",
+  "initialState": {
+    "solid": [
+      {
+        "row": 6,
+        "col": 3
+      },
+      {
+        "row": 2,
+        "col": 5
+      },
+      {
+        "row": 2,
+        "col": 8
+      }
+    ],
+    "switches": [
+      {
+        "row": 6,
+        "col": 9,
+        "state": "pos-right"
+      },
+      {
+        "row": 1,
+        "col": 1,
+        "state": "pos-right"
+      },
+      {
+        "row": 3,
+        "col": 2,
+        "state": "pos-right"
+      }
+    ]
+  },
+  "completionMessage": "Cycle stopped. Ladle is in HOME position.",
   "steps": [
     {
-      "instruction": "Press the STOP AT CYCLE END button to request the cycle to stop.",
-      "target": { "row": 3, "col": 3 },
+      "instruction": "Press the STOP AT CYCLE END button to request the cycle to stop. Wait 6 seconds or until the light of LADLE HOME POSITION goes GREEN for the Ladle to reach its home position.",
+      "target": {
+        "row": 3,
+        "col": 3
+      },
       "expectedState": "click",
-      "onSuccess": { "startBlink": [{ "row": 2, "col": 2 }] }
-    },
-    {
-      "instruction": "Wait and confirm the Ladle's arrival by simulating a click on the LADLE HOME POSITION button.",
-      "target": { "row": 2, "col": 2 },
-      "expectedState": "click",
-      "onSuccess": { "solid": [{ "row": 2, "col": 2 }], "enablePanel": true }
+      "onSuccess": {
+        "delay": 6000,
+        "solid": [
+          {
+            "row": 3,
+            "col": 3
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "delay": 6000
+          }
+        ],
+        "enablePanel": true
+      }
     }
   ]
 }
