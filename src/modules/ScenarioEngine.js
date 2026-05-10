@@ -61,6 +61,34 @@ export class ScenarioEngine {
       }
     });
 
+    if (this.currentScenario && this.currentScenario.initialState) {
+      this.applyEffects(this.currentScenario.initialState);
+      
+      if (this.currentScenario.initialState.switches) {
+        this.currentScenario.initialState.switches.forEach(s => {
+          const index = (s.row - 1) * 12 + (s.col - 1);
+          const cell = this.grid.querySelector(`[data-grid-index="${index}"]`);
+          if (cell) {
+            const sw = cell.querySelector('.switch-selector');
+            if (sw) {
+              sw.classList.remove('pos-left', 'pos-center', 'pos-right');
+              sw.classList.add(s.state);
+              
+              if (s.state === 'pos-left') sw.dataset.pos = "0";
+              else if (s.state === 'pos-center') sw.dataset.pos = "1";
+              else if (s.state === 'pos-right') {
+                sw.dataset.pos = sw.dataset.type === "3" ? "2" : "1";
+              }
+            }
+          }
+        });
+      }
+      
+      if (this.currentScenario.initialState.panelEnabled !== undefined) {
+        this.panelEnabled = this.currentScenario.initialState.panelEnabled;
+      }
+    }
+
     this.logger.clear();
     this.logger.log(`[SYSTEM] Changing scenario...`, 'system');
     this.logger.log(`Starting: ${this.currentScenario.title}`, 'info');

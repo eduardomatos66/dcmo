@@ -1,6 +1,15 @@
 {
   "id": "start_pump",
   "title": "Turn on panel and start pump",
+  "initialState": {
+    "switches": [
+      {
+        "row": 6,
+        "col": 9,
+        "state": "pos-left"
+      }
+    ]
+  },
   "steps": [
     {
       "instruction": "Turn on the panel by turning the PUSH BUTTON ENABLE switch to position 1.",

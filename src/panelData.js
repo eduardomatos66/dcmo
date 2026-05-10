@@ -10,7 +10,7 @@ export const panelData = [
       "O",
       "AUTO"
     ],
-    "default": 1
+    "default": 0
   },
   {
     "row": 1,
@@ -21,7 +21,7 @@ export const panelData = [
     "options": [
       "POUR",
       "O",
-      "DRAIN"
+      "DRAW"
     ],
     "default": 1
   },
