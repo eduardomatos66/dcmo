@@ -87,16 +87,38 @@ body {
   cursor: pointer;
 }
 
+.check-highlight {
+  outline: 2px dashed #ffc107 !important;
+  outline-offset: -2px;
+  background-color: rgba(255, 193, 7, 0.15) !important;
+}
+
 .target-highlight {
   outline: 2px dashed #bf00ff !important;
   outline-offset: -2px;
   background-color: rgba(191, 0, 255, 0.15) !important;
 }
 
-.check-highlight {
-  outline: 2px dashed #ffc107 !important;
-  outline-offset: -2px;
-  background-color: rgba(255, 193, 7, 0.15) !important;
+.target-highlight::after {
+  content: attr(data-seq);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #bf00ff;
+  color: white;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  pointer-events: none;
 }
 
 .scenario-selector {
@@ -328,7 +350,8 @@ body {
   /* Similar to push but with glow when active */
 }
 
-.btn-illuminated.active {
+.btn-illuminated.active,
+.btn-illuminated.lamp-test-on {
   box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
   filter: brightness(1.5);
 }
@@ -364,7 +387,8 @@ body {
   transition: all 0.3s;
 }
 
-.pilot-light.active {
+.pilot-light.active,
+.pilot-light.lamp-test-on {
   opacity: 1;
   box-shadow: 0 0 20px currentColor, inset 0 0 10px currentColor;
 }

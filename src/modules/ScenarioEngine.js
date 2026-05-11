@@ -104,16 +104,23 @@ export class ScenarioEngine {
   refreshHighlights() {
     Array.from(this.grid.children).forEach(cell => {
       cell.classList.remove('target-highlight', 'check-highlight');
+      cell.removeAttribute('data-seq');
     });
 
     if (this.highlightEnabled && this.currentScenario) {
-      this.currentScenario.steps.forEach(step => {
+      this.currentScenario.steps.forEach((step, stepIndex) => {
         // Alvos de interação (Roxo)
         if (step.target) {
           const index = (step.target.row - 1) * 12 + (step.target.col - 1);
           const cell = this.grid.querySelector(`[data-grid-index="${index}"]`);
           if (cell) {
             cell.classList.add('target-highlight');
+            const currentSeq = cell.getAttribute('data-seq');
+            if (currentSeq) {
+              cell.setAttribute('data-seq', currentSeq + ', ' + (stepIndex + 1));
+            } else {
+              cell.setAttribute('data-seq', (stepIndex + 1).toString());
+            }
           }
         }
         
@@ -189,6 +196,11 @@ export class ScenarioEngine {
     
     const step = this.currentScenario.steps[this.currentStepIndex];
     if (step.target.row === item.row && step.target.col === item.col) {
+      if (step.expectedState === 'hold' && actionResult === 'click') {
+        // Just return true to allow the click to be processed without error,
+        // but DON'T advance the step.
+        return true; 
+      }
       if (step.expectedState === actionResult || step.expectedState === 'click') {
         return true;
       } else {
@@ -208,6 +220,10 @@ export class ScenarioEngine {
     if (!this.trainingActive) return;
     const step = this.currentScenario.steps[this.currentStepIndex];
     if (step.target.row === item.row && step.target.col === item.col) {
+      if (step.expectedState === 'hold' && actionResult === 'click') {
+        // Do nothing yet, wait for 'hold'
+        return;
+      }
       if (step.expectedState === actionResult || step.expectedState === 'click') {
         this.processSuccess(step);
       }

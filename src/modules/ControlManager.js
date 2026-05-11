@@ -114,35 +114,61 @@ export class ControlManager {
     if (!btn) return;
 
     let holdTimeout;
+    let isHolding = false;
+    let wasBlinking = false;
     
     btn.addEventListener('mousedown', () => {
       this.handleInteraction(item, element);
+      if (item.label === 'LAMP TEST') {
+        document.querySelectorAll('.btn-illuminated, .pilot-light').forEach(el => {
+          el.classList.add('lamp-test-on');
+        });
+      }
       if (this.blinkLabelsList.includes(item.label.toUpperCase())) {
         if (btn.dataset.solid === "true") return;
+        isHolding = true;
+        wasBlinking = btn.classList.contains('blinking');
         btn.classList.add('blinking');
         holdTimeout = setTimeout(() => {
           btn.classList.remove('blinking');
           btn.classList.add('active');
           btn.dataset.solid = "true";
           this.logger.log(`${item.label}: CONTINUOUS MODE ON`);
+          this.engine.processValidAction(item, 'hold');
         }, 5000);
       }
     });
 
     btn.addEventListener('mouseup', () => {
+      if (item.label === 'LAMP TEST') {
+        document.querySelectorAll('.lamp-test-on').forEach(el => {
+          el.classList.remove('lamp-test-on');
+        });
+      }
       if (this.blinkLabelsList.includes(item.label.toUpperCase())) {
         clearTimeout(holdTimeout);
-        if (btn.dataset.solid !== "true") {
-          btn.classList.remove('blinking');
+        if (isHolding) {
+          isHolding = false;
+          if (!wasBlinking && btn.dataset.solid !== "true") {
+            btn.classList.remove('blinking');
+          }
         }
       }
     });
 
     btn.addEventListener('mouseleave', () => {
+      if (item.label === 'LAMP TEST') {
+        document.querySelectorAll('.lamp-test-on').forEach(el => {
+          el.classList.remove('lamp-test-on');
+        });
+      }
       if (this.blinkLabelsList.includes(item.label.toUpperCase())) {
         clearTimeout(holdTimeout);
-        if (btn.dataset.solid !== "true") {
-          btn.classList.remove('blinking');
+        if (isHolding) {
+          isHolding = false;
+          if (!wasBlinking && btn.dataset.solid !== "true") {
+            btn.classList.remove('blinking');
+          }
         }
       }
     });
