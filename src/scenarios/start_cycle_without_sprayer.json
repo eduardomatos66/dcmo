@@ -42,23 +42,39 @@
   },
   "steps": [
     {
-      "instruction": "Verify DIE LUBRICATION is OFF, then set SEMIAUTOMATIC CYCLE to AUT.",
+      "instruction": "Set SEMIAUTOMATIC CYCLE to AUT.",
       "target": {
         "row": 3,
         "col": 2
       },
-      "check": [
-        {
-          "row": 1,
-          "col": 11
-        }
-      ],
       "expectedState": "pos-right",
       "onSuccess": {
         "startBlink": [
           {
             "row": 3,
             "col": 4
+          }
+        ],
+        "solid": [
+          {
+            "row": 1,
+            "col": 11
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Turn OFF DIE LUBRICATION.",
+      "target": {
+        "row": 1,
+        "col": 11
+      },
+      "expectedState": "click",
+      "onSuccess": {
+        "turnOff": [
+          {
+            "row": 1,
+            "col": 11
           }
         ]
       }
