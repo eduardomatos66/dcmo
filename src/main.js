@@ -36,3 +36,24 @@ highlightCb.addEventListener('change', (e) => {
     legend.style.display = e.target.checked ? 'flex' : 'none';
   }
 });
+
+// Hook up QR Modal
+const qrBtn = document.getElementById('qr-code-btn');
+const qrModal = document.getElementById('qr-modal');
+const qrModalClose = document.getElementById('qr-modal-close');
+
+if (qrBtn && qrModal && qrModalClose) {
+  qrBtn.addEventListener('click', () => {
+    qrModal.style.display = 'flex';
+  });
+  
+  qrModalClose.addEventListener('click', () => {
+    qrModal.style.display = 'none';
+  });
+
+  qrModal.addEventListener('click', (e) => {
+    if (e.target === qrModal) {
+      qrModal.style.display = 'none';
+    }
+  });
+}
