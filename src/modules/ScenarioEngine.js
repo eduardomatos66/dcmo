@@ -38,10 +38,10 @@ export class ScenarioEngine {
     document.querySelectorAll('.btn-push, .pilot-light, .switch-selector').forEach(el => {
       el.classList.remove('active', 'blinking');
       el.dataset.solid = "false";
-      
+
       if (el.classList.contains('switch-selector')) {
         el.classList.remove('pos-center', 'pos-right', 'pos-left');
-        
+
         const defaultPos = parseInt(el.dataset.default || '0');
 
         if (el.classList.contains('rotary-12')) {
@@ -63,7 +63,7 @@ export class ScenarioEngine {
 
     if (this.currentScenario && this.currentScenario.initialState) {
       this.applyEffects(this.currentScenario.initialState);
-      
+
       if (this.currentScenario.initialState.switches) {
         this.currentScenario.initialState.switches.forEach(s => {
           const index = (s.row - 1) * 12 + (s.col - 1);
@@ -73,7 +73,7 @@ export class ScenarioEngine {
             if (sw) {
               sw.classList.remove('pos-left', 'pos-center', 'pos-right');
               sw.classList.add(s.state);
-              
+
               if (s.state === 'pos-left') sw.dataset.pos = "0";
               else if (s.state === 'pos-center') sw.dataset.pos = "1";
               else if (s.state === 'pos-right') {
@@ -83,7 +83,7 @@ export class ScenarioEngine {
           }
         });
       }
-      
+
       if (this.currentScenario.initialState.panelEnabled !== undefined) {
         this.panelEnabled = this.currentScenario.initialState.panelEnabled;
       }
@@ -92,7 +92,7 @@ export class ScenarioEngine {
     this.logger.clear();
     this.logger.log(`[SYSTEM] Changing scenario...`, 'system');
     this.logger.log(`Starting: ${this.currentScenario.title}`, 'info');
-    
+
     this.startTraining();
   }
 
@@ -123,7 +123,7 @@ export class ScenarioEngine {
             }
           }
         }
-        
+
         // Elementos que apenas devem ser verificados visualmente (Amarelo)
         if (step.check) {
           step.check.forEach(t => {
@@ -134,7 +134,7 @@ export class ScenarioEngine {
             }
           });
         }
-        
+
         // Efeitos visuais a serem checados após a ação (Amarelo)
         if (step.onSuccess) {
           const effects = step.onSuccess;
@@ -160,7 +160,7 @@ export class ScenarioEngine {
       if (this.currentScenario && this.currentScenario.steps.length === 0) {
         this.instructionElement.textContent = "Free Mode Active. Interact with the panel freely.";
       } else {
-        this.instructionElement.textContent = this.currentScenario.completionMessage || "Training Completed. Panel unlocked for free operation.";
+        this.instructionElement.textContent = this.currentScenario.completionMessage || "Training Completed.";
       }
       this.instructionElement.classList.add('completed');
       return;
@@ -193,23 +193,23 @@ export class ScenarioEngine {
 
   validateAction(item, actionResult) {
     if (!this.trainingActive) return true;
-    
+
     const step = this.currentScenario.steps[this.currentStepIndex];
     if (step.target.row === item.row && step.target.col === item.col) {
       if (step.expectedState === 'hold' && actionResult === 'click') {
         // Just return true to allow the click to be processed without error,
         // but DON'T advance the step.
-        return true; 
+        return true;
       }
       if (step.expectedState === actionResult || step.expectedState === 'click') {
         return true;
       } else {
-        this.logger.log(`INCORRECT ACTION: Set the switch to the correct position.`, 'error');
+        this.logger.log(`INCORRECT ACTION: Set the switch to the correct position. Please read the step description carefully.`, 'error');
         return false;
       }
     } else {
       if (!this.panelEnabled) {
-        this.logger.log(`INCORRECT ACTION: Operate the correct control.`, 'error');
+        this.logger.log(`INCORRECT ACTION: Operate the correct control. Please read the step description carefully.`, 'error');
         return false;
       }
     }
@@ -232,11 +232,11 @@ export class ScenarioEngine {
 
   processSuccess(step) {
     this.logger.log(`[Training] Step ${this.currentStepIndex + 1} completed!`, 'system');
-    
+
     const effects = step.onSuccess;
     if (effects) {
       this.applyEffects(effects);
-      
+
       const finishDelay = effects.delay || 0;
       setTimeout(() => {
         if (effects.enablePanel) {

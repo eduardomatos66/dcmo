@@ -10,7 +10,7 @@
       }
     ]
   },
-  "completionMessage": "Training Completed. Panel unlocked for free operation.",
+  "completionMessage": "Panel unlocked for free operation.",
   "steps": [
     {
       "instruction": "Turn on the panel by turning the PUSH BUTTON ENABLE switch to position 1.",
