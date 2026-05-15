@@ -10,7 +10,7 @@
       }
     ]
   },
-  "completionMessage": "Panel unlocked for free operation.",
+  "completionMessage": "Panel control is ENABLED and PUMP MOTOR is ON. You can for free operation.",
   "steps": [
     {
       "instruction": "Turn on the panel by turning the PUSH BUTTON ENABLE switch to position 1.",

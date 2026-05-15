@@ -96,7 +96,7 @@
       "expectedState": "pos-center"
     },
     {
-      "instruction": "Set METAL LADLE to AUTO.",
+      "instruction": "The die will close and be ready for metal pouring. Set METAL LADLE to AUTO.",
       "target": {
         "row": 1,
         "col": 1

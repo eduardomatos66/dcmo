@@ -68,7 +68,7 @@
       }
     },
     {
-      "instruction": "Press and hold CYCLE START until it stops blinking.",
+      "instruction": "Press and hold CYCLE START until it stops blinking. Observe the DMC door is closing and the sprayer is working.",
       "target": {
         "row": 3,
         "col": 4
@@ -84,7 +84,7 @@
       "expectedState": "pos-center"
     },
     {
-      "instruction": "Set METAL LADLE to AUTO.",
+      "instruction": "After sprayer, the die will close and be ready for metal pouring. Set METAL LADLE to AUTO.",
       "target": {
         "row": 1,
         "col": 1
