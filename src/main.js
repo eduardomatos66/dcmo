@@ -57,3 +57,24 @@ if (qrBtn && qrModal && qrModalClose) {
     }
   });
 }
+
+// Hook up Tutorial Modal
+const tutorialBtn = document.getElementById('tutorial-btn');
+const tutorialModal = document.getElementById('tutorial-modal');
+const tutorialModalClose = document.getElementById('tutorial-modal-close');
+
+if (tutorialBtn && tutorialModal && tutorialModalClose) {
+  tutorialBtn.addEventListener('click', () => {
+    tutorialModal.style.display = 'flex';
+  });
+  
+  tutorialModalClose.addEventListener('click', () => {
+    tutorialModal.style.display = 'none';
+  });
+
+  tutorialModal.addEventListener('click', (e) => {
+    if (e.target === tutorialModal) {
+      tutorialModal.style.display = 'none';
+    }
+  });
+}

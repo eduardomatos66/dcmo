@@ -534,7 +534,7 @@ body {
 }
 
 /* --- QR Code Button & Modal --- */
-.qr-btn {
+.qr-btn, .tutorial-btn {
   background: #17a2b8;
   color: #fff;
   border: none;
@@ -550,8 +550,17 @@ body {
   gap: 4px;
 }
 
+.tutorial-btn {
+  background: #ffc107;
+  color: #1a1a1a;
+}
+
 .qr-btn:hover {
   background: #138496;
+}
+
+.tutorial-btn:hover {
+  background: #e0a800;
 }
 
 .modal-overlay {
