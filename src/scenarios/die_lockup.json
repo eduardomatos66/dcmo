@@ -1,0 +1,24 @@
+{
+  "name": "Die Lockup",
+  "description": "Training module for die lockup procedures.",
+  "initialState": {
+    "150": 0,
+    "126": 0
+  },
+  "steps": [
+    {
+      "instruction": "Set the Die Lockup control to ON.",
+      "targetControl": "150",
+      "expectedValue": 1,
+      "validationType": "switch"
+    },
+    {
+      "instruction": "Verify that Die Lockup process is complete.",
+      "targetControl": "126",
+      "expectedValue": 1,
+      "validationType": "button",
+      "action": "hold"
+    }
+  ],
+  "completionMessage": "Die Lockup process completed successfully!"
+}

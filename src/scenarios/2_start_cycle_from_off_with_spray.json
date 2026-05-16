@@ -1,0 +1,86 @@
+{
+  "id": "start_cycle_from_off_with_spray",
+  "title": "2. Start cycle from panel off - WITH spray",
+  "initialState": {
+    "panelEnabled": false,
+    "switches": [
+      { "row": 6, "col": 9, "state": "pos-left" },
+      { "row": 1, "col": 1, "state": "pos-left" },
+      { "row": 3, "col": 1, "state": "pos-left" },
+      { "row": 3, "col": 2, "state": "pos-left" }
+    ],
+    "solid": [
+      { "row": 2, "col": 2 },
+      { "row": 6, "col": 11 },
+      { "row": 1, "col": 11 }
+    ]
+  },
+  "completionMessage": "Panel started and cycle executed with Sprayer selected.",
+  "steps": [
+    {
+      "instruction": "Turn on the panel by turning the PUSH BUTTON ENABLE switch to position 1.",
+      "target": { "row": 6, "col": 9 },
+      "expectedState": "pos-right",
+      "onSuccess": {
+        "startBlink": [ { "row": 3, "col": 12 } ]
+      }
+    },
+    {
+      "instruction": "Press the blinking ALARMS RESET button.",
+      "target": { "row": 3, "col": 12 },
+      "expectedState": "click",
+      "onSuccess": {
+        "stopBlink": [ { "row": 3, "col": 12 } ],
+        "turnOff": [ { "row": 3, "col": 12 } ]
+      }
+    },
+    {
+      "instruction": "Press the PUMP MOTOR START button. It will blink and then stay solid.",
+      "target": { "row": 6, "col": 3 },
+      "expectedState": "click",
+      "onSuccess": {
+        "delay": 2000,
+        "blinkThenSolid": [ { "row": 6, "col": 3, "blinks": 4 } ],
+        "solid": [
+          { "row": 2, "col": 5, "delay": 2000 },
+          { "row": 2, "col": 8, "delay": 2000 },
+          { "row": 6, "col": 4, "delay": 2000 },
+          { "row": 6, "col": 5, "delay": 2000 }
+        ],
+        "enablePanel": true
+      }
+    },
+    {
+      "instruction": "Verify DIE LUBRICATION is ON, then set SEMIAUTOMATIC CYCLE to AUT.",
+      "target": { "row": 3, "col": 2 },
+      "check": [ { "row": 1, "col": 11 } ],
+      "expectedState": "pos-right",
+      "onSuccess": {
+        "startBlink": [ { "row": 3, "col": 4 } ]
+      }
+    },
+    {
+      "instruction": "Press and hold CYCLE START until it stops blinking. Observe the DMC door is closing and the sprayer is working.",
+      "target": { "row": 3, "col": 4 },
+      "expectedState": "hold"
+    },
+    {
+      "instruction": "Set METAL LADLE to AUTO.",
+      "target": { "row": 1, "col": 1 },
+      "expectedState": "pos-center"
+    },
+    {
+      "instruction": "After sprayer, the die will close and be ready for metal pouring. Set METAL LADLE to AUTO.",
+      "target": { "row": 1, "col": 1 },
+      "expectedState": "pos-right"
+    },
+    {
+      "instruction": "Press BACKWARD + LADLE START to complete.",
+      "target": { "row": 2, "col": 1 },
+      "expectedState": "click",
+      "onSuccess": {
+        "enablePanel": true
+      }
+    }
+  ]
+}

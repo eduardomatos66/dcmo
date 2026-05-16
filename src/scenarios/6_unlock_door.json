@@ -1,6 +1,6 @@
 {
   "id": "unlock_door",
-  "title": "Unlock DCM safety door",
+  "title": "6. Unlock DCM safety door",
   "initialState": {
     "solid": [
       {

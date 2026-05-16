@@ -1,17 +1,15 @@
-import freeMode from './free_mode.json';
-import startPump from './start_pump.json';
-import ladleHome from './ladle_home.json';
-import startCycleWithSprayer from './start_cycle_with_sprayer.json';
-import startCycleWithoutSprayer from './start_cycle_without_sprayer.json';
-import unlockDoor from './unlock_door.json';
-import stopCycleLadle from './stop_cycle_ladle.json';
+import startPump from './1_start_pump.json';
+import startCycleFromOffWithSpray from './2_start_cycle_from_off_with_spray.json';
+import startCycleFromOffWithoutSpray from './3_start_cycle_from_off_without_spray.json';
+import stopCycleLadle from './4_stop_cycle_ladle.json';
+import ladleHome from './5_ladle_home.json';
+import unlockDoor from './6_unlock_door.json';
 
 export const scenariosData = [
-  freeMode,
   startPump,
+  startCycleFromOffWithSpray,
+  startCycleFromOffWithoutSpray,
+  stopCycleLadle,
   ladleHome,
-  startCycleWithSprayer,
-  startCycleWithoutSprayer,
-  unlockDoor,
-  stopCycleLadle
+  unlockDoor
 ];

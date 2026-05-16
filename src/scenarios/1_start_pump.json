@@ -1,6 +1,6 @@
 {
   "id": "start_pump",
-  "title": "Turn on panel and start pump",
+  "title": "1. Turn on panel and start pump",
   "initialState": {
     "switches": [
       {

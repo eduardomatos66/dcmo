@@ -1,0 +1,59 @@
+{
+  "id": "ladle_home",
+  "title": "5. Ladle to Home position",
+  "initialState": {
+    "solid": [
+      {
+        "row": 6,
+        "col": 3
+      },
+      {
+        "row": 2,
+        "col": 5
+      },
+      {
+        "row": 2,
+        "col": 8
+      }
+    ],
+    "switches": [
+      {
+        "row": 6,
+        "col": 9,
+        "state": "pos-right"
+      },
+      {
+        "row": 1,
+        "col": 1,
+        "state": "pos-left"
+      }
+    ]
+  },
+  "completionMessage": "Ladle is in home position when LADLE HOME POSITION mushroom button green light is ON.",
+  "steps": [
+    {
+      "instruction": "Check if the METAL LADLE switch is in MAN. position, then press and hold the LADLE HOME POSITION mushroom. It will blink for 6s and stay ON indicating the ladle emptied itself and is in HOME.",
+      "target": {
+        "row": 2,
+        "col": 2
+      },
+      "check": [
+        {
+          "row": 1,
+          "col": 1
+        }
+      ],
+      "expectedState": "click",
+      "onSuccess": {
+        "blinkThenSolid": [
+          {
+            "row": 2,
+            "col": 2,
+            "blinks": 12
+          }
+        ],
+        "enablePanel": true
+      }
+    }
+  ]
+}

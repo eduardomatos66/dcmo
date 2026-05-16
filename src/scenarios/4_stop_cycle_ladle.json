@@ -1,6 +1,6 @@
 {
   "id": "stop_cycle_ladle",
-  "title": "Stop cycle and wait for ladle to reach HOME position",
+  "title": "4. Stop cycle and wait for ladle to reach HOME position",
   "initialState": {
     "solid": [
       {
