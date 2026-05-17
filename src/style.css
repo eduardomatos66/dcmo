@@ -326,6 +326,10 @@ body {
   color: var(--color-black);
 }
 
+.btn-push.color-black {
+  border: 2px solid #c0c0c0;
+}
+
 .color-green {
   background-color: var(--color-green);
   color: var(--color-green);
@@ -358,8 +362,8 @@ body {
 
 .btn-illuminated.active,
 .btn-illuminated.lamp-test-on {
-  box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
-  filter: brightness(1.5);
+  box-shadow: 0 0 25px currentColor, 0 0 40px currentColor, inset 0 0 15px currentColor;
+  filter: brightness(2);
 }
 
 @keyframes blink-anim {
@@ -372,8 +376,8 @@ body {
   }
 
   50% {
-    box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
-    filter: brightness(1.6);
+    box-shadow: 0 0 25px currentColor, 0 0 40px currentColor, inset 0 0 15px currentColor;
+    filter: brightness(2);
     opacity: 1;
   }
 }
@@ -396,7 +400,8 @@ body {
 .pilot-light.active,
 .pilot-light.lamp-test-on {
   opacity: 1;
-  box-shadow: 0 0 20px currentColor, inset 0 0 10px currentColor;
+  box-shadow: 0 0 30px currentColor, 0 0 50px currentColor, inset 0 0 15px currentColor;
+  filter: brightness(2);
 }
 
 /* --- Selector Switches --- */
@@ -482,6 +487,35 @@ body {
 .btn-emergency.active {
   transform: translateY(4px);
   box-shadow: 0 2px 0 #8b0000, 0 3px 6px rgba(0, 0, 0, 0.6), inset 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Mushroom Buttons (Non-Emergency) --- */
+.btn-mushroom {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 6px solid #151515 !important;
+  box-shadow: 0 5px 0 #050505, 0 8px 10px rgba(0,0,0,0.6), inset 0 3px 6px rgba(255,255,255,0.5) !important;
+  background-image: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.5), transparent 60%);
+  position: relative;
+  z-index: 2;
+  transition: all 0.1s;
+}
+
+.btn-mushroom:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #050505, 0 2px 4px rgba(0,0,0,0.6), inset 0 3px 6px rgba(255,255,255,0.5) !important;
+}
+
+.btn-mushroom.btn-illuminated.active,
+.btn-mushroom.btn-illuminated.lamp-test-on {
+  box-shadow: 0 5px 0 #050505, 0 0 25px currentColor, 0 0 40px currentColor, inset 0 0 15px currentColor !important;
+  filter: brightness(2);
+}
+
+.btn-mushroom:active.btn-illuminated.active,
+.btn-mushroom:active.btn-illuminated.lamp-test-on {
+  box-shadow: 0 1px 0 #050505, 0 0 25px currentColor, 0 0 40px currentColor, inset 0 0 15px currentColor !important;
 }
 
 /* --- Blank Dummy --- */

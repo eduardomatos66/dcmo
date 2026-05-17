@@ -1,5 +1,8 @@
 # DCMO - Die Casting Machine Simulator
 
+![Simulator Screen Mockup](./assets/screen.png)
+![Software Architecture Diagram](./assets/architecture.png)
+
 DCMO is a web-based, interactive training simulator designed to train operators on the control panels of industrial Die Casting Machines. It replicates physical switches, buttons, and system behaviors in a risk-free digital environment.
 
 ## Features

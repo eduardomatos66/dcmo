@@ -1,6 +1,6 @@
 {
   "id": "unlock_door",
-  "title": "6. Unlock DCM safety door",
+  "title": "6. Die Mount - Unlock DCM safety door",
   "initialState": {
     "solid": [
       {

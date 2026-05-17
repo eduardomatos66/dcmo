@@ -80,7 +80,8 @@ export class PanelRenderer {
     }
     else {
       const isIlluminated = item.type.includes('Illuminated') ? ' btn-illuminated' : '';
-      controlHtml = `<button class="btn-push${isIlluminated} color-${item.color.toLowerCase()}"></button>`;
+      const isMushroom = item.type.includes('mushroom') ? ' btn-mushroom' : '';
+      controlHtml = `<button class="btn-push${isIlluminated}${isMushroom} color-${item.color.toLowerCase()}"></button>`;
     }
 
     container.innerHTML = `
