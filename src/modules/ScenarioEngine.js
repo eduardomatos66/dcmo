@@ -259,9 +259,11 @@ export class ScenarioEngine {
         }
         
         if (justCompleted) {
-          document.dispatchEvent(new CustomEvent('scenarioCompleted', { 
-            detail: { message: this.currentScenario.completionMessage || "Training Completed successfully." }
-          }));
+          setTimeout(() => {
+            document.dispatchEvent(new CustomEvent('scenarioCompleted', { 
+              detail: { message: this.currentScenario.completionMessage || "Training Completed successfully." }
+            }));
+          }, 2000);
         }
 
         this.updateUI();
@@ -272,9 +274,11 @@ export class ScenarioEngine {
       if (this.currentStepIndex >= this.currentScenario.steps.length) {
         if (this.trainingActive) {
           this.trainingActive = false;
-          document.dispatchEvent(new CustomEvent('scenarioCompleted', { 
-            detail: { message: this.currentScenario.completionMessage || "Training Completed successfully." }
-          }));
+          setTimeout(() => {
+            document.dispatchEvent(new CustomEvent('scenarioCompleted', { 
+              detail: { message: this.currentScenario.completionMessage || "Training Completed successfully." }
+            }));
+          }, 2000);
         }
       }
       this.updateUI();

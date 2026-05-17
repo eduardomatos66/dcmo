@@ -1,0 +1,102 @@
+{
+  "id": "disable_panel_and_pump",
+  "title": "4.1. Disable panel and pump",
+  "initialState": {
+    "panelEnabled": false,
+    "switches": [
+      {
+        "row": 6,
+        "col": 9,
+        "state": "pos-right"
+      }
+    ],
+    "solid": [
+      {
+        "row": 6,
+        "col": 10
+      },
+      {
+        "row": 6,
+        "col": 3
+      },
+      {
+        "row": 6,
+        "col": 4
+      },
+      {
+        "row": 6,
+        "col": 5
+      },
+      {
+        "row": 2,
+        "col": 5
+      },
+      {
+        "row": 2,
+        "col": 8
+      },
+      {
+        "row": 2,
+        "col": 2
+      },
+      {
+        "row": 3,
+        "col": 3
+      }
+    ]
+  },
+  "completionMessage": "Panel control and pump motor successfully disabled.",
+  "steps": [
+    {
+      "instruction": "Set PUSH BUTTON ENABLE to 0 to disable panel control. The PANEL CONTROL ENABLE light will turn off.",
+      "target": {
+        "row": 6,
+        "col": 9
+      },
+      "expectedState": "pos-left",
+      "check": [
+        {
+          "row": 6,
+          "col": 10
+        }
+      ],
+      "onSuccess": {
+        "turnOff": [
+          {
+            "row": 6,
+            "col": 10
+          }
+        ]
+      }
+    },
+    {
+      "instruction": "Press PUMP MOTOR OFF. Verify that the PUMP MOTOR START and all other active lights turn off.",
+      "target": {
+        "row": 6,
+        "col": 2
+      },
+      "expectedState": "click",
+      "check": [
+        { "row": 6, "col": 3 },
+        { "row": 6, "col": 4 },
+        { "row": 6, "col": 5 },
+        { "row": 2, "col": 5 },
+        { "row": 2, "col": 8 },
+        { "row": 2, "col": 2 },
+        { "row": 3, "col": 3 }
+      ],
+      "onSuccess": {
+        "turnOff": [
+          { "row": 6, "col": 3 },
+          { "row": 6, "col": 4 },
+          { "row": 6, "col": 5 },
+          { "row": 2, "col": 5 },
+          { "row": 2, "col": 8 },
+          { "row": 2, "col": 2 },
+          { "row": 3, "col": 3 }
+        ],
+        "enablePanel": true
+      }
+    }
+  ]
+}
