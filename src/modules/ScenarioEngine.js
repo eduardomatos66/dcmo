@@ -11,7 +11,7 @@ export class ScenarioEngine {
     this.currentStepIndex = 0;
     this.trainingActive = false;
     this.panelEnabled = false;
-    this.highlightEnabled = false;
+    this.highlightEnabled = true;
   }
 
   init() {
