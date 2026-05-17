@@ -73,5 +73,27 @@ export class UIController {
         }
       });
     }
+
+    // Success Modal
+    const successModal = document.getElementById('success-modal');
+    const successModalClose = document.getElementById('success-modal-close');
+    const successModalOk = document.getElementById('success-modal-ok');
+    const successMessage = document.getElementById('success-message');
+
+    if (successModal && successModalClose && successModalOk) {
+      const closeSuccess = () => { successModal.style.display = 'none'; };
+      successModalClose.addEventListener('click', closeSuccess);
+      successModalOk.addEventListener('click', closeSuccess);
+      successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) closeSuccess();
+      });
+
+      document.addEventListener('scenarioCompleted', (e) => {
+        if (successMessage) {
+          successMessage.textContent = e.detail.message;
+        }
+        successModal.style.display = 'flex';
+      });
+    }
   }
 }

@@ -37,7 +37,7 @@
   "completionMessage": "Cycle stopped. Ladle is in HOME position.",
   "steps": [
     {
-      "instruction": "Press the STOP AT CYCLE END button to request the cycle to stop. Wait 6 seconds or until the light of LADLE HOME POSITION goes GREEN for the Ladle to reach its home position.",
+      "instruction": "Press the STOP AT CYCLE END button to request the cycle to stop. Wait 6 seconds OR until the light of LADLE HOME POSITION goes GREEN for the Ladle to reach its home position.",
       "target": {
         "row": 3,
         "col": 3

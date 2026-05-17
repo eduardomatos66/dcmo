@@ -239,21 +239,43 @@ export class ScenarioEngine {
 
       const finishDelay = effects.delay || 0;
       setTimeout(() => {
+        let justCompleted = false;
+
         if (effects.enablePanel) {
           this.panelEnabled = true;
-          this.trainingActive = false;
+          if (this.trainingActive) {
+            this.trainingActive = false;
+            justCompleted = true;
+          }
         }
+        
         this.currentStepIndex++;
+        
         if (this.currentStepIndex >= this.currentScenario.steps.length) {
-          this.trainingActive = false;
+          if (this.trainingActive) {
+            this.trainingActive = false;
+            justCompleted = true;
+          }
         }
+        
+        if (justCompleted) {
+          document.dispatchEvent(new CustomEvent('scenarioCompleted', { 
+            detail: { message: this.currentScenario.completionMessage || "Training Completed successfully." }
+          }));
+        }
+
         this.updateUI();
         this.refreshHighlights();
       }, finishDelay);
     } else {
       this.currentStepIndex++;
       if (this.currentStepIndex >= this.currentScenario.steps.length) {
-        this.trainingActive = false;
+        if (this.trainingActive) {
+          this.trainingActive = false;
+          document.dispatchEvent(new CustomEvent('scenarioCompleted', { 
+            detail: { message: this.currentScenario.completionMessage || "Training Completed successfully." }
+          }));
+        }
       }
       this.updateUI();
       this.refreshHighlights();

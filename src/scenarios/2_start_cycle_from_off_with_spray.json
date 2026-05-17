@@ -46,8 +46,7 @@
           { "row": 2, "col": 8, "delay": 2000 },
           { "row": 6, "col": 4, "delay": 2000 },
           { "row": 6, "col": 5, "delay": 2000 }
-        ],
-        "enablePanel": true
+        ]
       }
     },
     {
