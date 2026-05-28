@@ -1,106 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador de Painel de Máquina</title>
-  <link rel="stylesheet" href="/src/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap"
-    rel="stylesheet">
+  <title>DCM Training - Home</title>
+  <link rel="stylesheet" href="/src/home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <div id="app">
-    <div class="status-area">
-      <div class="training-module" id="training-module">
-        <div class="training-header">
-          <span class="training-title">DCM TRAINING MODULE</span>
-          <div class="training-controls">
-            <label class="highlight-toggle">
-              <input type="checkbox" id="highlight-targets-cb" checked> Show Targets
-            </label>
-            <select id="scenario-selector" class="scenario-selector"></select>
-            <button id="reset-scenario-btn" class="reset-btn">Reset</button>
-            <button id="tutorial-btn" class="tutorial-btn" title="How to use the simulator">❓ Help</button>
-            <button id="qr-code-btn" class="qr-btn" title="Connect Mobile Device">📱 QR</button>
-          </div>
-        </div>
-        <div class="training-instruction" id="training-instruction">
-          Waiting for scenario initialization...
-        </div>
-      </div>
-      <div class="digital-log">
-        <div class="log-header">DIAGNOSTICS & STATUS LOG</div>
-        <div id="log-content" class="log-content">
-          <div class="log-entry system">> SYSTEM INITIALIZED</div>
-        </div>
-      </div>
-    </div>
+  <div class="home-container" style="position: relative;">
+    <button id="qr-code-btn" title="Connect Mobile Device" style="position: absolute; top: 20px; right: 20px; font-size: 0.9rem; padding: 8px 12px; background: rgba(0, 240, 255, 0.1); border: 1px solid var(--neon-blue); color: #fff; cursor: pointer; border-radius: 6px; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600;">📱 QR Code</button>
+    <header class="home-header">
+      <div class="glow-orb"></div>
+      <h1>DCM TRAINING <span>PORTAL</span></h1>
+      <p>Select a module below to begin your training session.</p>
+    </header>
 
-    <div class="panel-area">
-      <div class="panel-grid" id="panel-grid">
-        <!-- Botões serão inseridos dinamicamente aqui via JavaScript -->
-      </div>
-      <div class="target-legend" id="target-legend" style="display: flex;">
-        <div class="legend-item"><span class="legend-color legend-purple"></span> Interaction Target</div>
-        <div class="legend-item"><span class="legend-color legend-yellow"></span> Visual Verification</div>
-      </div>
-    </div>
+    <main class="modules-grid">
+      <!-- Panel Simulator Card -->
+      <a href="/panel.html" class="module-card">
+        <div class="card-bg"></div>
+        <div class="card-content">
+          <img src="/assets/PanelModule.png" alt="Panel Simulator" class="card-image" />
+          <h2>Panel Simulator</h2>
+          <p>Interactive 3D-like digital replica of the machine's control panel. Practice real-world scenarios and button operations.</p>
+          <span class="btn-launch">Launch Simulator <span>→</span></span>
+        </div>
+      </a>
+
+      <!-- Lockout Layout Card -->
+      <a href="/lockout-layout.html" class="module-card">
+        <div class="card-bg card-bg-alt"></div>
+        <div class="card-content">
+          <img src="/assets/LockoutModule.png" alt="Lockout Layout" class="card-image" />
+          <h2>Lockout Layout</h2>
+          <p>Digital floor plan indicating safety lockout points. Learn where to isolate energy for various maintenance scenarios.</p>
+          <span class="btn-launch">Launch Layout <span>→</span></span>
+        </div>
+      </a>
+    </main>
+
+    <footer class="home-footer">
+      <p>&copy; 2026 DCM Interactive Training Systems</p>
+    </footer>
   </div>
-  <script type="module" src="/src/main.js"></script>
 
   <!-- QR Code Modal -->
-  <div id="qr-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
-      <div class="modal-header">
+  <div id="qr-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(3px);">
+    <div class="modal-content" style="background: #1a1a1a; border: 2px solid var(--neon-blue); border-radius: 8px; width: 300px; box-shadow: 0 0 20px rgba(0,0,0,0.8); display: flex; flex-direction: column; color: #fff;">
+      <div class="modal-header" style="background: rgba(0, 240, 255, 0.15); border-bottom: 1px solid var(--neon-blue); padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
         <span class="modal-title">CONNECT DEVICE</span>
-        <button class="modal-close" id="qr-modal-close">&times;</button>
+        <button class="modal-close" id="qr-modal-close" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
       </div>
-      <div class="modal-body">
-        <p>Scan to open simulator on your mobile device:</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://dcmo.vercel.app/" alt="QR Code" class="qr-image" />
-        <p class="qr-url">https://dcmo.vercel.app/</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tutorial Modal -->
-  <div id="tutorial-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content" style="width: 400px; max-width: 90vw;">
-      <div class="modal-header">
-        <span class="modal-title">HOW TO USE</span>
-        <button class="modal-close" id="tutorial-modal-close">&times;</button>
-      </div>
-      <div class="modal-body" style="text-align: left;">
-        <p><strong>1. Scenarios:</strong> Select a scenario from the top dropdown to practice specific machine operations.</p>
-        <p><strong>2. Instructions:</strong> Follow the steps shown in blue text. If you get it wrong, the system will log an error.</p>
-        <p><strong>3. Interactions:</strong></p>
-        <ul style="margin-left: 20px; font-size: 0.85rem; color: #ccc; margin-bottom: 15px;">
-          <li><strong>Buttons:</strong> Click or tap to push.</li>
-          <li><strong>Switches (2/3 positions):</strong> Click to rotate to the next position.</li>
-          <li><strong>Hold Actions:</strong> Click/tap and hold the button until the action completes.</li>
-        </ul>
-        <p><strong>4. Targets:</strong> Enable "Show Targets" to see which control you should operate (Purple) or check (Yellow).</p>
+      <div class="modal-body" style="padding: 20px; text-align: center;">
+        <p style="font-size: 0.85rem; margin-bottom: 15px; color: #ccc;">Scan to open simulator on your mobile device:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://dcmo.vercel.app/" alt="QR Code" style="background: #fff; padding: 10px; border-radius: 8px; margin-bottom: 15px; max-width: 100%;" />
+        <p style="color: var(--neon-blue); font-family: 'Share Tech Mono', monospace;">https://dcmo.vercel.app/</p>
       </div>
     </div>
   </div>
 
-  <!-- Success Modal -->
-  <div id="success-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content" style="border-color: #28a745; text-align: center;">
-      <div class="modal-header" style="background: #28a745;">
-        <span class="modal-title">SCENARIO COMPLETED</span>
-        <button class="modal-close" id="success-modal-close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div style="font-size: 4rem; margin-bottom: 10px;">✅</div>
-        <p style="color: #fff; font-size: 1.2rem; font-weight: 800; margin-bottom: 10px;">EXCELLENT WORK!</p>
-        <p id="success-message" style="color: #ccc; font-size: 0.9rem; line-height: 1.4;">You have successfully completed this training scenario.</p>
-        <button id="success-modal-ok" class="reset-btn" style="background: #28a745; margin-top: 20px; width: 100%; padding: 10px; font-size: 1rem;">CONTINUE</button>
-      </div>
-    </div>
-  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const qrBtn = document.getElementById('qr-code-btn');
+      const qrModal = document.getElementById('qr-modal');
+      const qrModalClose = document.getElementById('qr-modal-close');
+
+      if (qrBtn && qrModal && qrModalClose) {
+        qrBtn.addEventListener('click', () => {
+          qrModal.style.display = 'flex';
+        });
+        
+        qrModalClose.addEventListener('click', () => {
+          qrModal.style.display = 'none';
+        });
+
+        qrModal.addEventListener('click', (e) => {
+          if (e.target === qrModal) {
+            qrModal.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
 </body>
-
 </html>
