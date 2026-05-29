@@ -27,7 +27,7 @@ export const scenarios = [
     id: 'tcus',
     title: 'TCUs',
     desc: 'Send machine through cooling cycle, shut off power to TCU, and lock out at each TCU.',
-    tags: [] // Handled generally or specifically if tags are added
+    tags: ['TCU AREA'] // Handled generally or specifically if tags are added
   },
   {
     id: 'dcm-hood',

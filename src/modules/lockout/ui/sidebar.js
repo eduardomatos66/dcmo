@@ -31,7 +31,7 @@ export function initSidebar(scenarios) {
     
     // Highlight specific lockout tags based on the scenario's tag list
     document.querySelectorAll('.lockout-tag').forEach(tagEl => {
-      const tagText = tagEl.textContent.trim();
+      const tagText = tagEl.dataset.tag || tagEl.textContent.trim();
       if (scenario.tags.includes(tagText)) {
         tagEl.classList.add('active');
       }
@@ -59,4 +59,20 @@ export function initSidebar(scenarios) {
 
     areaList.appendChild(li);
   });
+
+  // Mobile menu toggle logic
+  const mobileBtn = document.getElementById('mobile-dropdown-btn');
+  if (mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
+      areaList.classList.toggle('show');
+    });
+
+    // Close menu when a scenario is selected (on mobile)
+    areaList.addEventListener('click', (e) => {
+      if (e.target.closest('.area-item') && window.innerWidth <= 768) {
+        areaList.classList.remove('show');
+        mobileBtn.textContent = '▼ ' + e.target.closest('.area-item').querySelector('.area-title').textContent;
+      }
+    });
+  }
 }
