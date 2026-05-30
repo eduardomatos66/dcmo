@@ -1,14 +1,7 @@
-import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        panel: resolve(__dirname, 'panel.html'),
-        lockout: resolve(__dirname, 'lockout-layout.html')
-      }
-    }
-  }
+  plugins: [react(), tailwindcss()],
 });

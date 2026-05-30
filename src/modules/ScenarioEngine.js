@@ -15,6 +15,7 @@ export class ScenarioEngine {
   }
 
   init() {
+    this.selectorElement.innerHTML = '';
     this.scenarios.forEach((scenario, index) => {
       const option = document.createElement('option');
       option.value = index;
@@ -22,9 +23,9 @@ export class ScenarioEngine {
       this.selectorElement.appendChild(option);
     });
 
-    this.selectorElement.addEventListener('change', (e) => {
+    this.selectorElement.onchange = (e) => {
       this.startScenario(parseInt(e.target.value));
-    });
+    };
 
     this.startScenario(0);
   }

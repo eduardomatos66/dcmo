@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --primary-accent: #6b21a8;
+  --primary-accent-light: #a855f7;
+  --highlight-color: rgba(168, 85, 247, 0.4);
+  --highlight-border: #d8b4fe;
+  --bg-dark: #0f111a;
+  --bg-panel: rgba(20, 22, 35, 0.85);
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  
+  --neon-blue: #00f0ff;
+  --bg-dark-home: #0a0a0f;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+}
