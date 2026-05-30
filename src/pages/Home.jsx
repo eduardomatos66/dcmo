@@ -26,7 +26,7 @@ export default function Home() {
           </p>
         </header>
 
-        <main className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-[900px]">
+        <main className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-[1100px]">
           {/* Panel Simulator Card */}
           <Link to="/panel" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
             <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -53,6 +53,23 @@ export default function Home() {
               </p>
               <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#b400ff] uppercase tracking-wide">
                 Launch Layout <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </span>
+            </div>
+          </Link>
+
+          {/* Trim Press Simulator Card */}
+          <Link to="/trim-simulator" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,255,100,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="w-full h-40 bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] flex items-center justify-center">
+                <span className="text-5xl">🏭</span>
+              </div>
+              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Trim Press Sim</h2>
+              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                Full 3D digital twin of a trim press with live simulation and operational controls.
+              </p>
+              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#00ff64] uppercase tracking-wide">
+                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </div>
           </Link>
