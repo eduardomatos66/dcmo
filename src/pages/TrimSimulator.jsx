@@ -34,7 +34,7 @@ export default function TrimSimulator() {
           </div>
           <div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              Trim Press Simulator Pro
+              Trim Press Simulator
             </h1>
             <p className="text-xs text-gray-500 font-medium tracking-wide">FULL INDUSTRIAL DIGITAL TWIN</p>
           </div>
@@ -51,41 +51,52 @@ export default function TrimSimulator() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 flex flex-col xl:flex-row gap-6 min-h-[calc(100vh-73px)]">
+      <main className="flex-1 p-6 flex flex-col xl:flex-row gap-6">
 
         {/* 3D Simulation Area */}
-        <div className="flex-1 flex flex-col relative min-h-[50vh] xl:min-h-0">
-          <div className="absolute top-4 left-4 z-10 space-y-2 pointer-events-none">
-            {faultMessage && (
-              <div className="bg-red-900/80 backdrop-blur-md text-red-200 px-4 py-3 rounded-lg border border-red-500 shadow-lg flex items-center gap-3 max-w-md pointer-events-auto">
-                <AlertTriangle size={24} className="text-red-400 shrink-0" />
-                <div className="font-bold text-sm leading-tight">{faultMessage}</div>
-              </div>
-            )}
+        <div className="w-full xl:flex-1 flex flex-col gap-3">
+          
+          {/* Top Control Bar for Simulator specific actions */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div className="w-full sm:w-auto min-h-[40px] flex items-center">
+              {faultMessage ? (
+                <div className="bg-red-900/80 text-red-200 px-4 py-2 rounded border border-red-500 shadow-md flex items-center gap-2 w-full">
+                  <AlertTriangle size={18} className="text-red-400 shrink-0" />
+                  <div className="font-bold text-xs leading-tight">{faultMessage}</div>
+                </div>
+              ) : (
+                <div className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></div>
+                  Interactive 3D View
+                </div>
+              )}
+            </div>
+
+            <div className="flex gap-2 w-full sm:w-auto shrink-0">
+              <button
+                onClick={toggleDoor}
+                className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded shadow-sm border transition-colors ${sensors.DOOR_LEFT_OPEN || sensors.DOOR_RIGHT_OPEN
+                  ? 'bg-red-900/80 border-red-500 text-red-200'
+                  : 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700'
+                  }`}
+              >
+                Toggle Doors
+              </button>
+              <button
+                onClick={toggleLightCurtain}
+                className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded shadow-sm border transition-colors ${sensors.LIGHT_CURTAIN_BLOCKED
+                  ? 'bg-red-900/80 border-red-500 text-red-200'
+                  : 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700'
+                  }`}
+              >
+                Block Light Curtain
+              </button>
+            </div>
           </div>
 
-          <div className="absolute top-4 right-4 z-10 flex gap-2">
-            <button
-              onClick={toggleDoor}
-              className={`px-3 py-1.5 text-xs font-bold rounded shadow-lg border transition-colors ${sensors.DOOR_LEFT_OPEN || sensors.DOOR_RIGHT_OPEN
-                ? 'bg-red-900/80 border-red-500 text-red-200'
-                : 'bg-gray-800/80 border-gray-600 text-gray-300 hover:bg-gray-700'
-                }`}
-            >
-              Toggle Doors
-            </button>
-            <button
-              onClick={toggleLightCurtain}
-              className={`px-3 py-1.5 text-xs font-bold rounded shadow-lg border transition-colors ${sensors.LIGHT_CURTAIN_BLOCKED
-                ? 'bg-red-900/80 border-red-500 text-red-200'
-                : 'bg-gray-800/80 border-gray-600 text-gray-300 hover:bg-gray-700'
-                }`}
-            >
-              Block Light Curtain
-            </button>
+          <div className="w-full relative h-[45vh] xl:flex-1 xl:min-h-0 rounded-xl overflow-hidden border border-gray-700">
+            <TrimPressScene machineController={machineController} />
           </div>
-
-          <TrimPressScene machineController={machineController} />
         </div>
 
         {/* Control Panel Area */}
