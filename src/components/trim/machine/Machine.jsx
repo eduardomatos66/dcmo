@@ -7,9 +7,9 @@ export default function Machine({ targets, updateSensors, sensors }) {
     ramPos: targets.ram === 1 ? [0, -2, 0] : [0, 0, 0],
     config: { tension: 60, friction: 20 },
     onStart: () => updateSensors({ LS_RAM_TOP: false, LS_RAM_BOTTOM: false }),
-    onRest: () => updateSensors({ 
-      LS_RAM_TOP: targets.ram === 0, 
-      LS_RAM_BOTTOM: targets.ram === 1 
+    onRest: () => updateSensors({
+      LS_RAM_TOP: targets.ram === 0,
+      LS_RAM_BOTTOM: targets.ram === 1
     })
   });
 
@@ -48,8 +48,9 @@ export default function Machine({ targets, updateSensors, sensors }) {
 
   // Material settings for an industrial look
   const steelMat = <meshStandardMaterial color="#b0b5b9" metalness={0.8} roughness={0.3} />;
+  const coreMat = <meshStandardMaterial color="#0096FF" metalness={0.6} roughness={0.4} />;
   const frameMat = <meshStandardMaterial color="#2d3748" metalness={0.6} roughness={0.4} />;
-  const yellowMat = <meshStandardMaterial color="#ecc94b" metalness={0.2} roughness={0.5} />;
+  const yellowMat = <meshStandardMaterial color="#ffa000" metalness={0.2} roughness={0.5} />;
   const safetyGlass = <meshStandardMaterial color="#4299e1" transparent opacity={0.3} metalness={0.9} roughness={0.1} />;
   const lightCurtainMat = <meshStandardMaterial color="#f56565" transparent opacity={0.5} emissive="#f56565" emissiveIntensity={2} />;
   const partMat = <meshStandardMaterial color="#ff6600" metalness={0.1} roughness={0.5} emissive="#cc3300" emissiveIntensity={0.3} />;
@@ -59,15 +60,15 @@ export default function Machine({ targets, updateSensors, sensors }) {
       {/* Floor */}
       <mesh position={[0, -1.25, 0]} receiveShadow>
         <boxGeometry args={[25, 0.5, 25]} />
-        <meshStandardMaterial color="#1a202c" roughness={0.9} />
+        <meshStandardMaterial color="#4a5568" roughness={0.9} />
       </mesh>
 
       {/* Main Base / Lower Die area */}
       <mesh position={[0, 0, 0]} castShadow receiveShadow>
         <boxGeometry args={[8, 2, 6]} />
-        {frameMat}
+        {yellowMat}
       </mesh>
-      
+
       {/* Lower Die */}
       <mesh position={[0, 1.5, 0]} castShadow receiveShadow>
         <boxGeometry args={[4, 1, 4]} />
@@ -91,7 +92,7 @@ export default function Machine({ targets, updateSensors, sensors }) {
       {/* Top Frame / HPU */}
       <mesh position={[0, 9, 0]} castShadow receiveShadow>
         <boxGeometry args={[9, 1.5, 7]} />
-        {frameMat}
+        {yellowMat}
       </mesh>
       {/* Hydraulic Cylinder */}
       <mesh position={[0, 7.5, 0]} castShadow receiveShadow>
@@ -115,11 +116,11 @@ export default function Machine({ targets, updateSensors, sensors }) {
       {/* Animated Cores */}
       <a.mesh position={leftCorePos} castShadow receiveShadow>
         <boxGeometry args={[2, 1.5, 3]} />
-        {steelMat}
+        {coreMat}
       </a.mesh>
       <a.mesh position={rightCorePos} castShadow receiveShadow>
         <boxGeometry args={[2, 1.5, 3]} />
-        {steelMat}
+        {coreMat}
       </a.mesh>
 
       {/* Animated Ejector */}

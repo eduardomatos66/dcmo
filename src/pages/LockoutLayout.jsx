@@ -9,20 +9,16 @@ export default function LockoutLayout() {
   const [photoUrls, setPhotoUrls] = useState([]);
   
   useEffect(() => {
-    // Load photos
-    let urls = [];
-    try {
-      const photoModules = import.meta.glob('/assets/lockout/lockout_item*.*', { eager: true, query: '?url', import: 'default' });
-      urls = Object.values(photoModules);
-    } catch(e) {
-      console.warn("import.meta.glob not supported or failed, using fallback");
-    }
-    
-    if (urls.length === 0) {
-      for (let i = 1; i <= 3; i++) {
-        urls.push(`/assets/lockout/lockout_item${i}.jpg`);
-      }
-    }
+    // Load photos from public assets
+    const urls = [
+      '/assets/lockout/lockout_item1.jpg',
+      '/assets/lockout/lockout_item2.jpg',
+      '/assets/lockout/lockout_item3.jpg',
+      '/assets/lockout/20260528_033637.jpg',
+      '/assets/lockout/20260528_033655.jpg',
+      '/assets/lockout/20260528_033656.jpg',
+      '/assets/lockout/20260528_033658.jpg'
+    ];
     setPhotoUrls(urls);
   }, []);
 

@@ -1,0 +1,12 @@
+{
+  "name":"trim-press-pro",
+  "private":true,
+  "dependencies":{
+    "react":"^18",
+    "react-dom":"^18",
+    "three":"^0.170.0",
+    "@react-three/fiber":"^8",
+    "@react-three/drei":"^9",
+    "gsap":"^3"
+  }
+}
