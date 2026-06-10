@@ -277,8 +277,40 @@ const initialDcmParts = [
         "type": "box"
       }
     ]
+  },
+  {
+    "name": "Quench Tank / Fan Cooler",
+    "function": "Cools the cast part after it is extracted from the die.",
+    "images": [
+      "/assets/components/quench-tank.png",
+      "/assets/components/quench-tank2.png",
+      "/assets/components/fan cooler.png"
+    ],
+    "x": 50,
+    "y": 50,
+    "mapId": 1,
+    "areas": [
+      {
+        "left": 46.67968365829453,
+        "top": 51.5,
+        "width": 14.973957738321715,
+        "height": 15.75,
+        "type": "box"
+      }
+    ]
+  },
+  {
+    "name": "Hydraulics Core (Moving Cores)",
+    "function": "Hydraulic cylinders used to move cores in and out of the die cavity.",
+    "images": [
+      "/assets/components/moving-cores.mp4"
+    ],
+    "x": 50,
+    "y": 50,
+    "mapId": 1,
+    "areas": []
   }
-];
+].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function MachineParts() {
   const [parts, setParts] = useState(initialDcmParts);
@@ -435,12 +467,29 @@ export default function MachineParts() {
               {selectedPart ? (
                 <>
                   <div className="w-full aspect-video rounded-xl overflow-hidden border border-white/10 mb-6 bg-black/40 shadow-inner relative flex items-center justify-center group/image">
-                    {/* Placeholder for component image */}
-                    <img
-                      src={selectedPart.images?.[currentImageIndex] || `https://placehold.co/800x450/111111/ff6400?text=${encodeURIComponent(selectedPart.name)}`}
-                      alt={selectedPart.name}
-                      className="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-105"
-                    />
+                    {/* Placeholder for component image or video */}
+                    {(() => {
+                      const src = selectedPart.images?.[currentImageIndex] || `https://placehold.co/800x450/111111/ff6400?text=${encodeURIComponent(selectedPart.name)}`;
+                      if (String(src).endsWith('.mp4')) {
+                        return (
+                          <video
+                            src={src}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-105"
+                          />
+                        );
+                      }
+                      return (
+                        <img
+                          src={src}
+                          alt={selectedPart.name}
+                          className="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-105"
+                        />
+                      );
+                    })()}
 
                     {/* Image Navigation */}
                     {selectedPart.images && selectedPart.images.length > 1 && (

@@ -27,6 +27,21 @@ export default function Home() {
         </header>
 
         <main className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-[1100px]">
+          {/* Machine Parts Card */}
+          <Link to="/machine-parts" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,100,0,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            <div className="relative z-10 flex flex-col h-full">
+              <img src="/assets/components/capa.png" alt="DCM Parts" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
+              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">DCM Parts</h2>
+              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                Explore the core components and systems of Die Casting Machines and learn their functions.
+              </p>
+              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ff6400] uppercase tracking-wide">
+                View Components <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </span>
+            </div>
+          </Link>
+
           {/* Panel Simulator Card */}
           <Link to="/panel" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
             <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -72,20 +87,6 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* Machine Parts Card */}
-          <Link to="/machine-parts" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
-            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,100,0,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <img src="/assets/components/capa.png" alt="DCM Parts" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
-              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">DCM Parts</h2>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
-                Explore the core components and systems of Die Casting Machines and learn their functions.
-              </p>
-              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ff6400] uppercase tracking-wide">
-                View Components <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </div>
-          </Link>
         </main>
 
         <footer className="mt-auto pt-16 text-gray-500 text-sm text-center font-['Share_Tech_Mono']">
