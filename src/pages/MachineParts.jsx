@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import mapImg1 from '../../assets/lockout/20260528_033655.jpg';
 
 const initialDcmParts = [
   {
@@ -307,7 +306,7 @@ export default function MachineParts() {
     alert('Parts JSON copied to clipboard!');
   };
 
-  const currentMapImg = mapImg1;
+  const currentMapImg = '/assets/lockout/20260528_033655.jpg';
   const visibleParts = isMappingMode 
     ? parts 
     : (selectedPart ? [parts.find(p => p.name === selectedPart.name)].filter(Boolean) : []);
