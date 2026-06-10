@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import PanelSimulator from './pages/PanelSimulator';
 import LockoutLayout from './pages/LockoutLayout';
 import TrimSimulator from './pages/TrimSimulator';
+import MachineParts from './pages/MachineParts';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/panel" element={<PanelSimulator />} />
         <Route path="/lockout-layout" element={<LockoutLayout />} />
         <Route path="/trim-simulator" element={<TrimSimulator />} />
+        <Route path="/machine-parts" element={<MachineParts />} />
       </Routes>
     </Router>
   );
