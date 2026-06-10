@@ -79,6 +79,7 @@ const initialDcmParts = [
   {
     "name": "Plunger/Shot Sleeve",
     "function": "Piston that pushes the molten metal into the die under high pressure, and the injection chamber where liquid metal is deposited.",
+    "images": ["/assets/components/plunger.png"],
     "x": 55,
     "y": 50,
     "mapId": 1,
@@ -129,6 +130,7 @@ const initialDcmParts = [
   {
     "name": "Furnace",
     "function": "Furnace that keeps the aluminum (or other metal) molten at the proper temperature.",
+    "images": ["/assets/components/furnance.png"],
     "x": 80,
     "y": 40,
     "mapId": 1,
@@ -170,6 +172,7 @@ const initialDcmParts = [
   {
     "name": "Ejector System",
     "function": "Extraction/ejection system to release and push the part out of the die.",
+    "images": ["/assets/components/ejector.png"],
     "x": 25,
     "y": 50,
     "mapId": 1,
