@@ -25,4 +25,4 @@ dist-ssr
 
 # Assets rule already present
 src/assets/*.*
-assets/trim/
+/assets/

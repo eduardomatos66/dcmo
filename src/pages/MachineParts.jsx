@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const initialDcmParts = [
   {
     "name": "Conveyor",
-    "function": "Transports the produced parts to the next stage of the process.",
+    "function": "Transports the produced parts/flashes/scraps to the next stage of the process.",
+    "images": ["/assets/components/conveyor1.png", "/assets/components/conveyor2.png"],
     "x": 15,
     "y": 80,
     "mapId": 1,
@@ -41,6 +42,7 @@ const initialDcmParts = [
   {
     "name": "Robot Extractor",
     "function": "Automatically removes the part from the die after the machine opens.",
+    "images": ["/assets/components/robot-extractor.png"],
     "x": 14.501312335958005,
     "y": 63.6920384951881,
     "mapId": 1,
@@ -57,6 +59,7 @@ const initialDcmParts = [
   {
     "name": "Die",
     "function": "Metal mold where molten aluminum is injected to form the part.",
+    "images": ["/assets/components/die.png"],
     "x": 40,
     "y": 50,
     "mapId": 1,
@@ -89,6 +92,7 @@ const initialDcmParts = [
   {
     "name": "Robot Sprayer",
     "function": "Applies release agent and/or cooling to the die between cycles.",
+    "images": ["/assets/components/sprayer.png"],
     "x": 40,
     "y": 30,
     "mapId": 1,
@@ -105,6 +109,7 @@ const initialDcmParts = [
   {
     "name": "Ladle",
     "function": "Automatic or manual cup that transfers molten metal from the furnace to the injection chamber.",
+    "images": ["/assets/components/ladle.png"],
     "x": 65,
     "y": 40,
     "mapId": 1,
@@ -138,6 +143,7 @@ const initialDcmParts = [
   {
     "name": "Tie Bars",
     "function": "Clamping columns that support the locking force of the die during injection.",
+    "images": ["/assets/components/tie-bar.png"],
     "x": 35,
     "y": 40,
     "mapId": 1,
@@ -177,6 +183,7 @@ const initialDcmParts = [
   {
     "name": "HMI/Control Panel",
     "function": "Operation panel (Human-Machine Interface) for configuring and monitoring the process.",
+    "images": ["/assets/components/hmi.png"],
     "x": 10,
     "y": 40,
     "mapId": 1,
@@ -208,6 +215,7 @@ const initialDcmParts = [
   {
     "name": "Trim Press",
     "function": "Machine used to trim excess metal (flash) and runners from the cast part.",
+    "images": ["/assets/components/trimpress.png"],
     "x": 80,
     "y": 80,
     "mapId": 1,
@@ -220,24 +228,45 @@ const initialDcmParts = [
         "type": "box"
       }
     ]
+  },
+  {
+    "name": "TCU",
+    "function": "Temperature Control Unit. Maintains the die at the optimal operating temperature.",
+    "images": ["/assets/components/tcu1.png", "/assets/components/tcu2.png"],
+    "x": 20,
+    "y": 20,
+    "mapId": 1,
+    "areas": []
+  },
+  {
+    "name": "Vacuum Valve",
+    "function": "Extracts air and gases from the die cavity before metal injection to reduce porosity.",
+    "images": ["/assets/components/valves.png"],
+    "x": 30,
+    "y": 20,
+    "mapId": 1,
+    "areas": []
   }
 ];
 
 export default function MachineParts() {
   const [parts, setParts] = useState(initialDcmParts);
-  const [selectedPart, setSelectedPart] = useState(null);
-  
+  const [selectedPart, setSelectedPart] = useState(initialDcmParts[0]);
+
   // Mapping Mode State
   const [isMappingMode, setIsMappingMode] = useState(false);
   const mapRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [drawStart, setDrawStart] = useState({ x: 0, y: 0 });
   const [currentBox, setCurrentBox] = useState(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePartClick = (part) => {
     if (isMappingMode && isDrawing) return; // prevent selecting while drawing
     setSelectedPart(part);
+    setIsDropdownOpen(false);
+    setCurrentImageIndex(0);
   };
 
   const handleMouseDown = (e) => {
@@ -256,22 +285,22 @@ export default function MachineParts() {
     const rect = mapRef.current.getBoundingClientRect();
     const currentX = ((e.clientX - rect.left) / rect.width) * 100;
     const currentY = ((e.clientY - rect.top) / rect.height) * 100;
-    
+
     const clampedX = Math.max(0, Math.min(100, currentX));
     const clampedY = Math.max(0, Math.min(100, currentY));
-    
+
     const left = Math.min(drawStart.x, clampedX);
     const top = Math.min(drawStart.y, clampedY);
     const width = Math.abs(clampedX - drawStart.x);
     const height = Math.abs(clampedY - drawStart.y);
-    
+
     setCurrentBox({ left, top, width, height });
   };
 
   const handleMouseUp = () => {
     if (!isDrawing) return;
     setIsDrawing(false);
-    
+
     if (currentBox && currentBox.width > 0.5 && currentBox.height > 0.5) {
       setParts(parts.map(p => {
         if (p.name === selectedPart.name) {
@@ -306,227 +335,241 @@ export default function MachineParts() {
     alert('Parts JSON copied to clipboard!');
   };
 
-  const currentMapImg = '/assets/lockout/20260528_033655.jpg';
-  const visibleParts = isMappingMode 
-    ? parts 
+  const currentMapImg = '/assets/untagged-dcm-layout.png';
+  const visibleParts = isMappingMode
+    ? parts
     : (selectedPart ? [parts.find(p => p.name === selectedPart.name)].filter(Boolean) : []);
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg-dark)] text-white"
-         style={{ backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(255, 100, 0, 0.08), transparent 25%), radial-gradient(circle at 90% 80%, rgba(255, 0, 100, 0.08), transparent 25%)' }}>
-      
+      style={{ backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(255, 100, 0, 0.08), transparent 25%), radial-gradient(circle at 90% 80%, rgba(255, 0, 100, 0.08), transparent 25%)' }}>
+
       <div className="max-w-[1400px] mx-auto w-full px-5 py-10 flex flex-col items-center flex-1 relative">
-        <Link 
+        <Link
           to="/"
           className="absolute top-5 left-5 text-[0.9rem] px-3 py-2 bg-[rgba(255,255,255,0.1)] border border-white/20 text-white cursor-pointer rounded-md backdrop-blur-sm flex items-center gap-2 font-semibold hover:bg-white/20 transition-all z-10"
         >
           ← Back to Home
         </Link>
 
-        <header className="text-center mb-10 relative pt-8 w-full">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] h-[150px] bg-[#ff6400] blur-[100px] opacity-20 -z-10 rounded-full"></div>
+        <header className="text-center mb-8 relative pt-8 w-full z-30">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] h-[150px] bg-[#ff6400] blur-[100px] opacity-20 -z-10 rounded-full pointer-events-none"></div>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-['Share_Tech_Mono'] bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">
             DCM <span className="bg-gradient-to-br from-[#ff6400] to-[#ff0064] bg-clip-text text-transparent">COMPONENTS</span>
           </h1>
-          <p className="hidden md:block text-lg text-slate-400 max-w-[700px] mx-auto">
-            Explore the core components and systems. Select a part to view its location on the layout.
+          <p className="text-lg text-slate-400 max-w-[700px] mx-auto mb-6">
+            Explore the core components and systems. Select a part to view its details and location.
           </p>
+
+          {/* Main Dropdown */}
+          <div className="relative max-w-md mx-auto">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="w-full flex items-center justify-between bg-white/10 hover:bg-white/20 transition-colors border border-white/20 px-6 py-4 rounded-xl font-['Share_Tech_Mono'] text-xl text-white shadow-[0_5px_20px_rgba(0,0,0,0.4)] backdrop-blur-md"
+            >
+              <span>{selectedPart ? selectedPart.name : 'Select a Component'}</span>
+              <span className={`text-[#ff6400] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}>▼</span>
+            </button>
+
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 w-full mt-2 bg-[#1a1a1a] border border-white/20 rounded-xl shadow-2xl overflow-hidden z-50">
+                <div className="max-h-[400px] overflow-y-auto custom-scrollbar">
+                  {parts.map((part, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        handlePartClick(part);
+                      }}
+                      className={`cursor-pointer px-6 py-4 border-b border-white/5 transition-colors duration-200
+                        ${selectedPart?.name === part.name
+                          ? 'bg-[#ff6400]/20 text-[#ffb480] font-bold'
+                          : 'text-white hover:bg-white/10 hover:text-[#ffb480]'}`}
+                    >
+                      <span className="font-['Share_Tech_Mono'] text-lg">{part.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
-          {/* List of parts (Left side) */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
-            {/* Mapping Mode Toggle (Hidden for now) */}
-            {false && (
-              <div className="flex gap-4 mb-2 justify-between items-center bg-white/5 border border-white/10 rounded-lg p-3">
-                <span className="font-['Share_Tech_Mono'] font-bold text-lg">Mapping Mode</span>
-                <button 
-                  onClick={() => setIsMappingMode(!isMappingMode)}
-                  className={`px-4 py-2 rounded-lg font-bold transition-all ${isMappingMode ? 'bg-[#ff0064]/20 border border-[#ff0064]/50 text-[#ff80b4]' : 'bg-white/10 border border-white/20 text-white hover:bg-white/20'}`}
-                >
-                  {isMappingMode ? 'ON' : 'OFF'}
-                </button>
-              </div>
-            )}
-            
-            {isMappingMode && (
-              <div className="mb-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm text-blue-200">
-                <p className="mb-2"><strong>Instructions:</strong> Select a component below, then click and drag on the map to draw its bounding box. You can map multiple areas per component.</p>
-                <div className="flex gap-2">
-                  <button 
-                    onClick={copyJsonToClipboard}
-                    className="flex-1 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded transition-colors"
-                  >
-                    📋 Copy JSON
-                  </button>
-                  {selectedPart && (
-                    <button 
-                      onClick={() => handleClearAreas(selectedPart.name)}
-                      className="px-4 py-2 bg-red-600/50 hover:bg-red-500 text-white font-bold rounded transition-colors"
-                      title="Clear areas for selected component"
-                    >
-                      🗑️ Clear Selected
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mt-4 z-10">
 
-            {/* Mobile Dropdown Toggle */}
-            <div className="md:hidden">
-              <button 
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="w-full flex items-center justify-between bg-white/10 hover:bg-white/20 transition-colors border border-white/20 p-4 rounded-lg font-['Share_Tech_Mono'] text-lg text-white mb-2 shadow-[0_5px_15px_rgba(0,0,0,0.3)]"
-              >
-                <span>{selectedPart ? selectedPart.name : 'Select a Component'}</span>
-                <span className="text-[#ff6400]">{isMobileMenuOpen ? '▲' : '▼'}</span>
-              </button>
-            </div>
+          {/* Component Image and Details (Left Side) */}
+          <div className="flex flex-col gap-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-lg shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative flex flex-col h-full overflow-hidden group">
+              <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-gradient-to-br from-[#ff6400] to-transparent opacity-10 blur-[50px] rounded-full pointer-events-none -z-10 group-hover:opacity-20 transition-opacity duration-700"></div>
 
-            <div className={`${isMobileMenuOpen ? 'grid' : 'hidden md:grid'} grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto pr-2 max-h-[60vh] custom-scrollbar`}>
-              {parts.map((part, index) => (
-                <div 
-                  key={index}
-                  onClick={() => {
-                    handlePartClick(part);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`cursor-pointer group relative rounded-lg p-4 border backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_5px_15px_rgba(0,0,0,0.3)]
-                    ${selectedPart?.name === part.name 
-                      ? 'bg-gradient-to-br from-[#ff6400]/20 to-[#ff0064]/20 border-[#ff6400]/50' 
-                      : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'}`}
-                >
-                  <h3 className={`text-lg font-bold font-['Share_Tech_Mono'] transition-colors duration-300
-                    ${selectedPart?.name === part.name ? 'text-[#ffb480]' : 'text-white group-hover:text-[#ffb480]'}`}>
-                    {part.name}
-                  </h3>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Map and Details panel (Right side) */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            
-            {/* Map Viewer */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-2 backdrop-blur-lg shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative">
-               <div 
-                 ref={mapRef}
-                 className={`relative w-full aspect-video bg-black/60 rounded-xl overflow-hidden border border-white/5 flex items-center justify-center ${isMappingMode ? 'cursor-crosshair' : ''}`}
-                 onMouseDown={handleMouseDown}
-                 onMouseMove={handleMouseMove}
-                 onMouseUp={handleMouseUp}
-                 onMouseLeave={handleMouseLeave}
-                 style={{ userSelect: isDrawing ? 'none' : 'auto' }}
-               >
-                  <img src={currentMapImg} alt="DCM Layout Map" className="max-w-full max-h-full object-contain pointer-events-none" />
-                  
-                  {/* Overlay markers */}
-                  {visibleParts.flatMap((part, i) => {
-                    return (part.areas || []).map((area, j) => {
-                      if (area.type === 'box') {
-                        return (
-                          <div 
-                            key={`${i}-${j}`}
-                            onClick={(e) => { e.stopPropagation(); handlePartClick(part); }}
-                            className={`absolute cursor-pointer border-4 border-dashed rounded flex justify-center items-center shadow-[1px_1px_3px_black] transition-all duration-300 z-10 group
-                              ${selectedPart?.name === part.name 
-                                ? 'border-yellow-400 bg-yellow-400/30 animate-[pulseArea_2s_infinite]' 
-                                : 'border-yellow-400/60 bg-yellow-400/10 hover:bg-yellow-400/20 hover:border-yellow-400'}`}
-                            style={{ top: `${area.top}%`, left: `${area.left}%`, width: `${area.width}%`, height: `${area.height}%` }}
-                            title={part.name}
-                          >
-                            <div className={`absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/20 rounded text-sm font-bold font-['Share_Tech_Mono'] whitespace-nowrap transition-all pointer-events-none
-                              ${selectedPart?.name === part.name ? 'opacity-100 visible text-yellow-300' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible text-white'}
-                            `}>
-                              {part.name}
-                            </div>
-                          </div>
-                        );
-                      } else {
-                        return (
-                          <div 
-                            key={`${i}-${j}`}
-                            onClick={(e) => { e.stopPropagation(); handlePartClick(part); }}
-                            className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 group z-10"
-                            style={{ left: `${area.left}%`, top: `${area.top}%` }}
-                            title={part.name}
-                          >
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)] transition-all duration-300
-                              ${selectedPart?.name === part.name 
-                                ? 'bg-[#ff6400] border-white scale-125 animate-pulse shadow-[0_0_20px_#ff6400]' 
-                                : 'bg-black/50 border-[#ffb480] hover:scale-110 hover:bg-[#ff6400]/50'}`}
-                            >
-                               <div className="w-2 h-2 bg-white rounded-full"></div>
-                            </div>
-                            
-                            <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/20 rounded text-sm font-bold font-['Share_Tech_Mono'] whitespace-nowrap transition-all pointer-events-none
-                              ${selectedPart?.name === part.name ? 'opacity-100 visible text-[#ffb480]' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible text-white'}
-                            `}>
-                              {part.name}
-                            </div>
-                          </div>
-                        );
-                      }
-                    });
-                  })}
-
-                  {/* Current Drawing Box */}
-                  {isDrawing && currentBox && (
-                    <div 
-                      className="absolute border-4 border-dashed border-white bg-white/20 z-20 pointer-events-none"
-                      style={{ 
-                        left: `${currentBox.left}%`, 
-                        top: `${currentBox.top}%`, 
-                        width: `${currentBox.width}%`, 
-                        height: `${currentBox.height}%` 
-                      }}
-                    ></div>
-                  )}
-               </div>
-            </div>
-
-            {/* Details Panel */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-lg flex flex-col min-h-[200px] shadow-[0_10px_30px_rgba(0,0,0,0.3)] relative overflow-hidden">
               {selectedPart ? (
                 <>
-                  <div className="absolute -top-1/2 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(255,100,0,0.1),transparent_60%)] pointer-events-none -z-10"></div>
-                  <h2 className="text-2xl font-bold mb-3 text-white font-['Share_Tech_Mono'] border-b border-white/10 pb-3 flex items-center justify-between">
-                    <span>{selectedPart.name}</span>
-                  </h2>
-                  <p className="text-lg text-slate-300 leading-relaxed">
-                    {selectedPart.function}
-                  </p>
+                  <div className="w-full aspect-video rounded-xl overflow-hidden border border-white/10 mb-6 bg-black/40 shadow-inner relative flex items-center justify-center group/image">
+                    {/* Placeholder for component image */}
+                    <img
+                      src={selectedPart.images?.[currentImageIndex] || `https://placehold.co/800x450/111111/ff6400?text=${encodeURIComponent(selectedPart.name)}`}
+                      alt={selectedPart.name}
+                      className="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    {/* Image Navigation */}
+                    {selectedPart.images && selectedPart.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : selectedPart.images.length - 1));
+                          }}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/50 hover:bg-[#ff6400] text-white rounded-full backdrop-blur-md transition-all opacity-0 group-hover/image:opacity-100 z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                        >
+                          ◀
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex((prev) => (prev < selectedPart.images.length - 1 ? prev + 1 : 0));
+                          }}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/50 hover:bg-[#ff6400] text-white rounded-full backdrop-blur-md transition-all opacity-0 group-hover/image:opacity-100 z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                        >
+                          ▶
+                        </button>
+                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                          {selectedPart.images.map((_, idx) => (
+                            <div
+                              key={idx}
+                              className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'bg-[#ff6400] w-6' : 'bg-white/50'}`}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+
+                    <div className="absolute inset-0 border-2 border-white/5 rounded-xl pointer-events-none"></div>
+                  </div>
+
+                  <div className="flex-1">
+                    <h2 className="text-3xl font-bold mb-4 text-white font-['Share_Tech_Mono'] flex items-center">
+                      <span className="bg-gradient-to-r from-[#ffb480] to-[#ff0064] bg-clip-text text-transparent">{selectedPart.name}</span>
+                    </h2>
+                    <div className="h-px w-full bg-gradient-to-r from-white/20 to-transparent mb-4"></div>
+                    <p className="text-xl text-slate-300 leading-relaxed font-light">
+                      {selectedPart.function}
+                    </p>
+                  </div>
                 </>
               ) : (
-                <div className="flex flex-col items-center justify-center h-full text-center opacity-50 py-10">
-                  <div className="w-12 h-12 border-2 border-dashed border-white/30 rounded-full flex items-center justify-center mb-3">
-                    <span className="text-xl">📍</span>
-                  </div>
-                  <p className="text-lg font-['Share_Tech_Mono']">Select a component<br/>to view details & location</p>
+                <div className="flex flex-col items-center justify-center h-full text-center opacity-50 py-20">
+                  <span className="text-4xl mb-4">🔍</span>
+                  <p className="text-xl font-['Share_Tech_Mono']">Select a component from<br />the dropdown to view details</p>
                 </div>
               )}
             </div>
+          </div>
 
+          {/* Map Viewer (Right Side) */}
+          <div className="flex flex-col gap-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-lg shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative h-full flex flex-col">
+              <h3 className="text-xl font-bold mb-4 text-white font-['Share_Tech_Mono'] flex items-center gap-2">
+                <span className="text-[#ff6400]">📍</span> Location Map
+              </h3>
+
+              <div
+                ref={mapRef}
+                className={`relative w-full flex-1 min-h-[400px] bg-black/60 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center ${isMappingMode ? 'cursor-crosshair' : ''}`}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseLeave}
+                style={{ userSelect: isDrawing ? 'none' : 'auto' }}
+              >
+                <img src={currentMapImg} alt="DCM Layout Map" className="w-full h-full object-contain pointer-events-none p-4" />
+
+                {/* Overlay markers */}
+                {visibleParts.flatMap((part, i) => {
+                  return (part.areas || []).map((area, j) => {
+                    if (area.type === 'box') {
+                      return (
+                        <div
+                          key={`${i}-${j}`}
+                          onClick={(e) => { e.stopPropagation(); handlePartClick(part); }}
+                          className={`absolute cursor-pointer border-4 border-dashed rounded flex justify-center items-center shadow-[1px_1px_3px_black] transition-all duration-300 z-10 group
+                            ${selectedPart?.name === part.name
+                              ? 'border-yellow-400 bg-yellow-400/30 animate-[pulseArea_2s_infinite]'
+                              : 'border-white/30 bg-white/5 hover:bg-white/10 hover:border-white/60'}`}
+                          style={{ top: `${area.top}%`, left: `${area.left}%`, width: `${area.width}%`, height: `${area.height}%` }}
+                          title={part.name}
+                        >
+                          <div className={`absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/20 rounded text-sm font-bold font-['Share_Tech_Mono'] whitespace-nowrap transition-all pointer-events-none
+                            ${selectedPart?.name === part.name ? 'opacity-100 visible text-yellow-300' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible text-white'}
+                          `}>
+                            {part.name}
+                          </div>
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div
+                          key={`${i}-${j}`}
+                          onClick={(e) => { e.stopPropagation(); handlePartClick(part); }}
+                          className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 group z-10"
+                          style={{ left: `${area.left}%`, top: `${area.top}%` }}
+                          title={part.name}
+                        >
+                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)] transition-all duration-300
+                            ${selectedPart?.name === part.name
+                              ? 'bg-[#ff6400] border-white scale-125 animate-pulse shadow-[0_0_20px_#ff6400]'
+                              : 'bg-black/50 border-white/50 hover:scale-110 hover:bg-white/20'}`}
+                          >
+                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                          </div>
+
+                          <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/20 rounded text-sm font-bold font-['Share_Tech_Mono'] whitespace-nowrap transition-all pointer-events-none
+                            ${selectedPart?.name === part.name ? 'opacity-100 visible text-[#ffb480]' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible text-white'}
+                          `}>
+                            {part.name}
+                          </div>
+                        </div>
+                      );
+                    }
+                  });
+                })}
+
+                {/* Current Drawing Box */}
+                {isDrawing && currentBox && (
+                  <div
+                    className="absolute border-4 border-dashed border-white bg-white/20 z-20 pointer-events-none"
+                    style={{
+                      left: `${currentBox.left}%`,
+                      top: `${currentBox.top}%`,
+                      width: `${currentBox.width}%`,
+                      height: `${currentBox.height}%`
+                    }}
+                  ></div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
+
       {/* Custom Scrollbar Styles embedded */}
       <style>{`
         .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
+          width: 8px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.02);
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 100, 0, 0.3);
+          background: rgba(255, 100, 0, 0.2);
           border-radius: 10px;
+          border: 2px solid transparent;
+          background-clip: padding-box;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: rgba(255, 100, 0, 0.5);
+          border: 2px solid transparent;
+          background-clip: padding-box;
         }
         @keyframes pulseArea {
           0% { box-shadow: 0 0 0 rgba(255, 235, 59, 0.4); }
