@@ -5,7 +5,10 @@ const initialDcmParts = [
   {
     "name": "Conveyor",
     "function": "Transports the produced parts/flashes/scraps to the next stage of the process.",
-    "images": ["/assets/components/conveyor1.png", "/assets/components/conveyor2.png"],
+    "images": [
+      "/assets/components/conveyor1.png",
+      "/assets/components/conveyor2.png"
+    ],
     "x": 15,
     "y": 80,
     "mapId": 1,
@@ -17,24 +20,24 @@ const initialDcmParts = [
     },
     "areas": [
       {
-        "left": 7.808398950131233,
-        "top": 58.326042578011084,
-        "width": 31.23359580052493,
-        "height": 10.498687664041995,
+        "left": 4.88599348534202,
+        "top": 56.306446589847404,
+        "width": 33.22475570032573,
+        "height": 9.716599190283397,
         "type": "box"
       },
       {
-        "left": 44.94750656167979,
-        "top": 63.458734324876055,
-        "width": 22.834645669291334,
-        "height": 23.797025371828532,
+        "left": 43.97394136807817,
+        "top": 62.03674867642479,
+        "width": 21.661237785016283,
+        "height": 20.4297726564933,
         "type": "box"
       },
       {
-        "left": 34.31758530183727,
-        "top": 38.028579760863224,
-        "width": 3.8057742782152246,
-        "height": 18.197725284339462,
+        "left": 32.08469055374593,
+        "top": 39.36468389909685,
+        "width": 6.677524429967427,
+        "height": 28.40236686390532,
         "type": "box"
       }
     ]
@@ -81,10 +84,10 @@ const initialDcmParts = [
     "mapId": 1,
     "areas": [
       {
-        "left": 18.175853018372703,
-        "top": 33.36249635462234,
-        "width": 14.96062992125984,
-        "height": 9.798775153105865,
+        "left": 13.925081433224756,
+        "top": 35.03313166234515,
+        "width": 22.638436482084693,
+        "height": 10.141169691731484,
         "type": "box"
       }
     ]
@@ -131,10 +134,10 @@ const initialDcmParts = [
     "mapId": 1,
     "areas": [
       {
-        "left": 12.926509186351707,
-        "top": 20.06415864683581,
-        "width": 14.04199475065617,
-        "height": 10.03207932341791,
+        "left": 9.93485342019544,
+        "top": 19.682341949548427,
+        "width": 14.657980456026058,
+        "height": 12.457178449081287,
         "type": "box"
       }
     ]
@@ -183,30 +186,32 @@ const initialDcmParts = [
   {
     "name": "HMI/Control Panel",
     "function": "Operation panel (Human-Machine Interface) for configuring and monitoring the process.",
-    "images": ["/assets/components/hmi.png"],
+    "images": [
+      "/assets/components/hmi.png"
+    ],
     "x": 10,
     "y": 40,
     "mapId": 1,
     "areas": [
       {
-        "left": 52.95275590551181,
-        "top": 88.18897637795276,
-        "width": 9.58005249343833,
-        "height": 10.965296004666087,
+        "left": 31.107491856677527,
+        "top": 22.42292120834631,
+        "width": 5.8631921824104225,
+        "height": 9.218312052320147,
         "type": "box"
       },
       {
-        "left": 65.02624671916011,
-        "top": 52.726742490522014,
-        "width": 6.82414698162728,
-        "height": 10.498687664041995,
+        "left": 64.33224755700326,
+        "top": 69.76019931485519,
+        "width": 4.071661237785008,
+        "height": 6.477732793522264,
         "type": "box"
       },
       {
-        "left": 32.349081364829395,
-        "top": 22.397200349956258,
-        "width": 8.792650918635168,
-        "height": 8.63225430154564,
+        "left": 55.37459283387622,
+        "top": 83.4630956088446,
+        "width": 6.351791530944631,
+        "height": 8.470881345375261,
         "type": "box"
       }
     ]
@@ -215,16 +220,18 @@ const initialDcmParts = [
   {
     "name": "Trim Press",
     "function": "Machine used to trim excess metal (flash) and runners from the cast part.",
-    "images": ["/assets/components/trimpress.png"],
+    "images": [
+      "/assets/components/trimpress.png"
+    ],
     "x": 80,
     "y": 80,
     "mapId": 1,
     "areas": [
       {
-        "left": 31.561679790026247,
-        "top": 68.35812190142899,
-        "width": 8.792650918635168,
-        "height": 14.464858559346752,
+        "left": 29.80456026058632,
+        "top": 65.52475864216754,
+        "width": 10.097719869706843,
+        "height": 13.453752725007789,
         "type": "box"
       }
     ]
@@ -232,20 +239,41 @@ const initialDcmParts = [
   {
     "name": "TCU",
     "function": "Temperature Control Unit. Maintains the die at the optimal operating temperature.",
-    "images": ["/assets/components/tcu1.png", "/assets/components/tcu2.png"],
+    "images": [
+      "/assets/components/tcu1.png",
+      "/assets/components/tcu2.png"
+    ],
     "x": 20,
     "y": 20,
     "mapId": 1,
-    "areas": []
+    "areas": [
+      {
+        "left": 44.62540716612378,
+        "top": 13.204609156026159,
+        "width": 19.21824104234527,
+        "height": 13.204609156026159,
+        "type": "box"
+      }
+    ]
   },
   {
     "name": "Vacuum Valve",
     "function": "Extracts air and gases from the die cavity before metal injection to reduce porosity.",
-    "images": ["/assets/components/valves.png"],
+    "images": [
+      "/assets/components/valves.png"
+    ],
     "x": 30,
     "y": 20,
     "mapId": 1,
-    "areas": []
+    "areas": [
+      {
+        "left": 31.39389229543999,
+        "top": 33.39285405022781,
+        "width": 5.880522378109582,
+        "height": 14.249998912811364,
+        "type": "box"
+      }
+    ]
   }
 ];
 
@@ -468,9 +496,38 @@ export default function MachineParts() {
           {/* Map Viewer (Right Side) */}
           <div className="flex flex-col gap-6">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-lg shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative h-full flex flex-col">
-              <h3 className="text-xl font-bold mb-4 text-white font-['Share_Tech_Mono'] flex items-center gap-2">
-                <span className="text-[#ff6400]">📍</span> Location Map
-              </h3>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold text-white font-['Share_Tech_Mono'] flex items-center gap-2">
+                  <span className="text-[#ff6400]">📍</span> Location Map
+                </h3>
+                <button
+                  onClick={() => setIsMappingMode(!isMappingMode)}
+                  className={`px-4 py-2 rounded-lg text-sm font-bold font-['Share_Tech_Mono'] transition-all ${
+                    isMappingMode 
+                      ? 'bg-[#ff6400] text-white shadow-[0_0_15px_rgba(255,100,0,0.5)]' 
+                      : 'bg-white/10 text-slate-300 hover:bg-white/20 border border-white/20'
+                  }`}
+                >
+                  {isMappingMode ? 'Mapping: ON' : 'Mapping: OFF'}
+                </button>
+              </div>
+
+              {isMappingMode && (
+                <div className="flex gap-2 mb-4">
+                  <button 
+                    onClick={() => selectedPart && handleClearAreas(selectedPart.name)}
+                    className="px-3 py-1.5 bg-red-500/20 text-red-400 hover:bg-red-500/40 rounded text-sm transition-colors border border-red-500/50 font-bold"
+                  >
+                    Clear Areas
+                  </button>
+                  <button 
+                    onClick={copyJsonToClipboard}
+                    className="px-3 py-1.5 bg-green-500/20 text-green-400 hover:bg-green-500/40 rounded text-sm transition-colors border border-green-500/50 font-bold"
+                  >
+                    Copy Config
+                  </button>
+                </div>
+              )}
 
               <div
                 ref={mapRef}
