@@ -1,10 +1,10 @@
-﻿import { useState  } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function PartDetails({ selectedPart }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Reset image index when part changes
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentImageIndex(0);
   }, [selectedPart]);
 

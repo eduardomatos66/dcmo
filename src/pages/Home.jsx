@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
           onClick={() => setShowQRModal(true)}
           className="absolute top-5 right-5 text-[0.9rem] px-3 py-2 bg-[rgba(0,240,255,0.1)] border border-[var(--neon-blue)] text-white cursor-pointer rounded-md backdrop-blur-sm flex items-center gap-2 font-semibold z-10"
         >
-          ðŸ“± QR Code
+          📱 QR Code
         </button>
 
         <header className="text-center mb-16 relative pt-10 w-full">
@@ -37,7 +37,7 @@ export default function Home() {
                 Explore the core components and systems of Die Casting Machines and learn their functions.
               </p>
               <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ff6400] uppercase tracking-wide">
-                View Components <span className="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
+                View Components <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </div>
           </Link>
@@ -52,7 +52,7 @@ export default function Home() {
                 Interactive 3D-like digital replica of the machine's control panel. Practice real-world scenarios and button operations.
               </p>
               <span className="inline-flex items-center text-[0.95rem] font-semibold text-[var(--neon-blue)] uppercase tracking-wide">
-                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
+                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </div>
           </Link>
@@ -67,7 +67,7 @@ export default function Home() {
                 Digital floor plan indicating safety lockout points. Learn where to isolate energy for various maintenance scenarios.
               </p>
               <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#b400ff] uppercase tracking-wide">
-                Launch Layout <span className="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
+                Launch Layout <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </div>
           </Link>
@@ -82,7 +82,7 @@ export default function Home() {
                 Full 3D digital twin of a trim press with live simulation and operational controls.
               </p>
               <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#00ff64] uppercase tracking-wide">
-                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
+                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </div>
           </Link>
