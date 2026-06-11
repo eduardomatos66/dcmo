@@ -1,7 +1,10 @@
 import js from '@eslint/js';
+import react from 'eslint-plugin-react';
 
 export default [
   js.configs.recommended,
+  react.configs.flat.recommended,
+  react.configs.flat['jsx-runtime'],
   {
     files: ["src/**/*.{js,jsx}"],
     languageOptions: {
@@ -11,9 +14,17 @@ export default [
         ecmaFeatures: { jsx: true }
       }
     },
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    },
     rules: {
       "no-unused-vars": "warn",
-      "no-undef": "off", // Ignorar no-undef por agora para evitar falsos positivos com variáveis globais como window/document ou imports automáticos
+      "no-undef": "off",
+      "react/prop-types": "off",
+      "react/no-unknown-property": "off",
+      "react/no-unescaped-entities": "off"
     }
   }
 ];

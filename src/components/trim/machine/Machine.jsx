@@ -1,4 +1,4 @@
-import React from 'react';
+﻿
 import { useSpring, a } from '@react-spring/three';
 
 export default function Machine({ targets, updateSensors, sensors }) {

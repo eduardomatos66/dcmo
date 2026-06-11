@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+﻿import { useState, useCallback, useEffect } from 'react';
 import { STATES } from '../data/cycleStates';
 
 export default function useMachineCycle() {

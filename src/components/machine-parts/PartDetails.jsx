@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import { useState  } from 'react';
 
 export default function PartDetails({ selectedPart }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -50,7 +50,7 @@ export default function PartDetails({ selectedPart }) {
                     }}
                     className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/50 hover:bg-[#ff6400] text-white rounded-full backdrop-blur-md transition-all opacity-0 group-hover/image:opacity-100 z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                   >
-                    ◀
+                    â—€
                   </button>
                   <button
                     onClick={(e) => {
@@ -59,7 +59,7 @@ export default function PartDetails({ selectedPart }) {
                     }}
                     className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/50 hover:bg-[#ff6400] text-white rounded-full backdrop-blur-md transition-all opacity-0 group-hover/image:opacity-100 z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                   >
-                    ▶
+                    â–¶
                   </button>
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                     {selectedPart.images.map((_, idx) => (
@@ -87,7 +87,7 @@ export default function PartDetails({ selectedPart }) {
           </>
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-center opacity-50 py-20">
-            <span className="text-4xl mb-4">🔍</span>
+            <span className="text-4xl mb-4">ðŸ”</span>
             <p className="text-xl font-['Share_Tech_Mono']">Select a component from<br />the dropdown to view details</p>
           </div>
         )}

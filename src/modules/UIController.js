@@ -1,4 +1,4 @@
-export class UIController {
+﻿export class UIController {
   constructor(engine) {
     this.engine = engine;
     this.scenarioSelector = document.getElementById('scenario-selector');

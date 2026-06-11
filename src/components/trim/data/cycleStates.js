@@ -1,4 +1,4 @@
-export const STATES = {
+﻿export const STATES = {
   IDLE: 'IDLE',
   LOADING: 'LOADING',
   READY_TO_START: 'READY_TO_START',

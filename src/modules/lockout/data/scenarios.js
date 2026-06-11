@@ -1,4 +1,4 @@
-export const scenarios = [
+﻿export const scenarios = [
   {
     id: 'trim',
     title: 'Trim',

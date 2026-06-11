@@ -1,4 +1,4 @@
-export class ControlManager {
+﻿export class ControlManager {
   constructor(logger, engine) {
     this.logger = logger;
     this.engine = engine;

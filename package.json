@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "eslint src/",
+    "lint-fix": "eslint src/ --fix"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.0",

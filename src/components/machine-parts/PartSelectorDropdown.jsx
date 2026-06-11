@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import { useState  } from 'react';
 
 export default function PartSelectorDropdown({ parts, selectedPart, handlePartClick }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function PartSelectorDropdown({ parts, selectedPart, handlePartCl
         className="w-full flex items-center justify-between bg-white/10 hover:bg-white/20 transition-colors border border-white/20 px-6 py-4 rounded-xl font-['Share_Tech_Mono'] text-xl text-white shadow-[0_5px_20px_rgba(0,0,0,0.4)] backdrop-blur-md"
       >
         <span>{selectedPart ? selectedPart.name : 'Select a Component'}</span>
-        <span className={`text-[#ff6400] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}>▼</span>
+        <span className={`text-[#ff6400] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}>â–¼</span>
       </button>
 
       {isDropdownOpen && (

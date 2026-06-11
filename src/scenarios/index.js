@@ -1,4 +1,4 @@
-import startPump from './1_start_pump.json';
+﻿import startPump from './1_start_pump.json';
 import startCycleFromOffWithSpray from './2_start_cycle_from_off_with_spray.json';
 import startCycleWithSpray from './2.1_start_cycle_with_sprayer.json';
 import startCycleFromOffWithoutSpray from './3_start_cycle_from_off_without_spray.json';

@@ -1,4 +1,4 @@
-export class Logger {
+﻿export class Logger {
   constructor(containerElement) {
     this.container = containerElement;
   }

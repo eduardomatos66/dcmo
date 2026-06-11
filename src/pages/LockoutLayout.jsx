@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { scenarios } from '../modules/lockout/data/scenarios';
 
@@ -47,7 +47,7 @@ export default function LockoutLayout() {
         <div className="p-4 md:p-6 border-b border-white/5">
           <div className="flex items-center gap-4 mb-4">
             <Link to="/" className="flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline" style={{textDecoration: 'none'}}>
-              <span>←</span> Home
+              <span>â†</span> Home
             </Link>
           </div>
           <h2 className="font-['Share_Tech_Mono'] text-xl md:text-2xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase mb-1 md:mb-2 font-bold">
@@ -61,14 +61,14 @@ export default function LockoutLayout() {
             onClick={() => setShowPhotos(true)}
             className="mt-3 md:mt-2 p-2.5 bg-[#28a745] text-white border-none rounded cursor-pointer text-sm font-bold w-full flex justify-center items-center gap-2"
           >
-            📸 View Lockout Photos
+            ðŸ“¸ View Lockout Photos
           </button>
 
           <button 
             className="md:hidden block w-full bg-purple-800/60 text-white border border-[var(--primary-accent-light)] p-3 text-base font-bold rounded-md mt-4 cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            ▼ {activeScenario ? activeScenario.title : 'Select Scenario'}
+            â–¼ {activeScenario ? activeScenario.title : 'Select Scenario'}
           </button>
         </div>
 

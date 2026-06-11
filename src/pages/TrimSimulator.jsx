@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+﻿
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Settings, Power, AlertTriangle, ShieldCheck, RefreshCw, Upload, Download, Maximize2, Lock, Unlock } from 'lucide-react';
+import { Settings, Power, AlertTriangle, RefreshCw, Upload, Download, Maximize2 } from 'lucide-react';
 import TrimPressScene from '../components/trim/TrimPressScene';
 import useMachineCycle from '../components/trim/hooks/useMachineCycle';
 import { STATES } from '../components/trim/data/cycleStates';
@@ -29,7 +29,7 @@ export default function TrimSimulator() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-4 pr-4 border-r border-gray-700/50">
             <Link to="/" className="flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline">
-              <span>←</span> Home
+              <span>â†</span> Home
             </Link>
           </div>
           <div>

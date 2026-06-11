@@ -1,4 +1,4 @@
-export class PanelRenderer {
+﻿export class PanelRenderer {
   constructor(gridElement, data, controlManager) {
     this.grid = gridElement;
     this.data = data;
@@ -18,7 +18,7 @@ export class PanelRenderer {
 
     cells.forEach((item, i) => {
       if (item && item.type.includes('continuation')) {
-        return; // Pula renderização da continuação para não quebrar o grid
+        return; // Pula renderizaÃ§Ã£o da continuaÃ§Ã£o para nÃ£o quebrar o grid
       }
 
       const container = document.createElement('div');

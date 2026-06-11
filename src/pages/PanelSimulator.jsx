@@ -6,7 +6,6 @@ import { ScenarioEngine } from '../modules/ScenarioEngine.js';
 import { ControlManager } from '../modules/ControlManager.js';
 import { PanelRenderer } from '../modules/PanelRenderer.js';
 import { UIController } from '../modules/UIController.js';
-import { scenariosData } from '../scenarios/index.js';
 import '../style.css'; // Load original panel styles
 
 export default function PanelSimulator() {
@@ -49,7 +48,7 @@ export default function PanelSimulator() {
           <div className="training-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
               <Link to="/" className="flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline" style={{textDecoration: 'none'}}>
-                <span>←</span> Home
+                <span>â†</span> Home
               </Link>
               <div style={{width: '1px', height: '15px', backgroundColor: 'rgba(255,255,255,0.2)'}}></div>
               <span className="training-title font-['Share_Tech_Mono'] text-lg md:text-xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase m-0 font-bold" style={{margin: 0}}>PANEL SIMULATOR</span>
@@ -60,7 +59,7 @@ export default function PanelSimulator() {
               </label>
               <select id="scenario-selector" className="scenario-selector"></select>
               <button id="reset-scenario-btn" className="reset-btn">Reset</button>
-              <button id="tutorial-btn" className="tutorial-btn" title="How to use the simulator">❓ Help</button>
+              <button id="tutorial-btn" className="tutorial-btn" title="How to use the simulator">â“ Help</button>
             </div>
           </div>
           <div className="training-instruction" id="training-instruction">
@@ -77,7 +76,7 @@ export default function PanelSimulator() {
 
       <div className="panel-area">
         <div className="panel-grid" id="panel-grid">
-          {/* Botões inseridos via Vanilla JS */}
+          {/* BotÃµes inseridos via Vanilla JS */}
         </div>
         <div className="target-legend" id="target-legend" style={{display: 'flex'}}>
           <div className="legend-item"><span className="legend-color legend-purple"></span> Interaction Target</div>
@@ -114,7 +113,7 @@ export default function PanelSimulator() {
             <button className="modal-close" id="success-modal-close">&times;</button>
           </div>
           <div className="modal-body">
-            <div style={{fontSize: '4rem', marginBottom: '10px'}}>✅</div>
+            <div style={{fontSize: '4rem', marginBottom: '10px'}}>âœ…</div>
             <p style={{color: '#fff', fontSize: '1.2rem', fontWeight: 800, marginBottom: '10px'}}>EXCELLENT WORK!</p>
             <p id="success-message" style={{color: '#ccc', fontSize: '0.9rem', lineHeight: '1.4'}}>You have successfully completed this training scenario.</p>
             <button id="success-modal-ok" className="reset-btn" style={{background: '#28a745', marginTop: '20px', width: '100%', padding: '10px', fontSize: '1rem'}}>CONTINUE</button>

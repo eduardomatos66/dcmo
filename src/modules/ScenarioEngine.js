@@ -1,4 +1,4 @@
-import { scenariosData } from '../scenarios/index.js';
+﻿import { scenariosData } from '../scenarios/index.js';
 
 export class ScenarioEngine {
   constructor(instructionElement, selectorElement, logger, gridElement) {
@@ -110,7 +110,7 @@ export class ScenarioEngine {
 
     if (this.highlightEnabled && this.currentScenario) {
       this.currentScenario.steps.forEach((step, stepIndex) => {
-        // Alvos de interação (Roxo)
+        // Alvos de interaÃ§Ã£o (Roxo)
         if (step.target) {
           const index = (step.target.row - 1) * 12 + (step.target.col - 1);
           const cell = this.grid.querySelector(`[data-grid-index="${index}"]`);
@@ -136,7 +136,7 @@ export class ScenarioEngine {
           });
         }
 
-        // Efeitos visuais a serem checados após a ação (Amarelo)
+        // Efeitos visuais a serem checados apÃ³s a aÃ§Ã£o (Amarelo)
         if (step.onSuccess) {
           const effects = step.onSuccess;
           const arrays = [effects.solid, effects.startBlink, effects.stopBlink, effects.blinkThenSolid, effects.turnOff];
