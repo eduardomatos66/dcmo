@@ -89,8 +89,9 @@ export default function Home() {
 
         </main>
 
-        <footer className="mt-auto pt-16 text-gray-500 text-sm text-center font-['Share_Tech_Mono']">
+        <footer className="mt-auto pt-16 pb-8 text-gray-500 text-sm text-center font-['Share_Tech_Mono']">
           <p>&copy; 2026 DCM Interactive Training Systems</p>
+          <p className="mt-2 text-xs text-[var(--neon-blue)] opacity-70">Developed by Eduardo Matos</p>
         </footer>
       </div>
 
@@ -99,13 +100,14 @@ export default function Home() {
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[1000] backdrop-blur-[3px]" onClick={() => setShowQRModal(false)}>
           <div className="bg-[#1a1a1a] border-2 border-[var(--neon-blue)] rounded-lg w-[300px] shadow-[0_0_20px_rgba(0,0,0,0.8)] flex flex-col text-white" onClick={e => e.stopPropagation()}>
             <div className="bg-[rgba(0,240,255,0.15)] border-b border-[var(--neon-blue)] p-4 flex justify-between items-center font-bold">
-              <span>CONNECT DEVICE</span>
+              <span>URL Access</span>
               <button className="bg-transparent border-none text-white text-2xl cursor-pointer leading-none" onClick={() => setShowQRModal(false)}>&times;</button>
             </div>
             <div className="p-5 text-center">
               <p className="text-sm mb-4 text-gray-300">Scan to open simulator on your mobile device:</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://dcmo.vercel.app/" alt="QR Code" className="bg-white p-2 rounded-lg mb-4 max-w-full mx-auto" />
-              <p className="text-[var(--neon-blue)] font-['Share_Tech_Mono']">https://dcmo.vercel.app/</p>
+              <p className="text-[var(--neon-blue)] font-['Share_Tech_Mono'] mb-3">https://dcmo.vercel.app/</p>
+              <span className="text-xs text-gray-500 block">Developed by Eduardo Matos</span>
             </div>
           </div>
         </div>
