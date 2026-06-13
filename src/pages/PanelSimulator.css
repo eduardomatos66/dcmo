@@ -1,0 +1,80 @@
+.training-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.training-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.home-link {
+  text-decoration: none;
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.training-title {
+  margin: 0;
+}
+
+.target-legend {
+  display: flex;
+}
+
+.tutorial-modal-content {
+  width: 400px;
+  max-width: 90vw;
+}
+
+.modal-body-left {
+  text-align: left;
+}
+
+.tutorial-list {
+  margin-left: 20px;
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.success-modal-content {
+  border-color: #28a745;
+  text-align: center;
+}
+
+.success-modal-header {
+  background: #28a745;
+}
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.success-title {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.success-button {
+  background: #28a745;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}

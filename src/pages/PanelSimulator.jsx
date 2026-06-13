@@ -7,6 +7,7 @@ import { ControlManager } from '../modules/ControlManager.js';
 import { PanelRenderer } from '../modules/PanelRenderer.js';
 import { UIController } from '../modules/UIController.js';
 import '../style.css'; // Load original panel styles
+import './PanelSimulator.css';
 
 export default function PanelSimulator() {
   useEffect(() => {
@@ -45,13 +46,13 @@ export default function PanelSimulator() {
     <div className="panel-simulator-wrapper bg-[var(--bg-dark)] w-screen overflow-hidden text-[var(--text-main)] font-['Inter'] relative">
       <div className="status-area">
         <div className="training-module" id="training-module">
-          <div className="training-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
-              <Link to="/" className="flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline" style={{textDecoration: 'none'}}>
-                <span>â†</span> Home
+          <div className="training-header">
+            <div className="training-header-left">
+              <Link to="/" className="home-link flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline">
+                <span>←</span> Home
               </Link>
-              <div style={{width: '1px', height: '15px', backgroundColor: 'rgba(255,255,255,0.2)'}}></div>
-              <span className="training-title font-['Share_Tech_Mono'] text-lg md:text-xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase m-0 font-bold" style={{margin: 0}}>PANEL SIMULATOR</span>
+              <div className="vertical-divider"></div>
+              <span className="training-title font-['Share_Tech_Mono'] text-lg md:text-xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase m-0 font-bold">PANEL SIMULATOR</span>
             </div>
             <div className="training-controls">
               <label className="highlight-toggle">
@@ -59,7 +60,7 @@ export default function PanelSimulator() {
               </label>
               <select id="scenario-selector" className="scenario-selector"></select>
               <button id="reset-scenario-btn" className="reset-btn">Reset</button>
-              <button id="tutorial-btn" className="tutorial-btn" title="How to use the simulator">â“ Help</button>
+              <button id="tutorial-btn" className="tutorial-btn" title="How to use the simulator">❓ Help</button>
             </div>
           </div>
           <div className="training-instruction" id="training-instruction">
@@ -76,9 +77,9 @@ export default function PanelSimulator() {
 
       <div className="panel-area">
         <div className="panel-grid" id="panel-grid">
-          {/* BotÃµes inseridos via Vanilla JS */}
+          {/* Botões inseridos via Vanilla JS */}
         </div>
-        <div className="target-legend" id="target-legend" style={{display: 'flex'}}>
+        <div className="target-legend" id="target-legend">
           <div className="legend-item"><span className="legend-color legend-purple"></span> Interaction Target</div>
           <div className="legend-item"><span className="legend-color legend-yellow"></span> Visual Verification</div>
         </div>
@@ -86,16 +87,16 @@ export default function PanelSimulator() {
 
       {/* Tutorial Modal */}
       <div id="tutorial-modal" className="modal-overlay" style={{display: 'none'}}>
-        <div className="modal-content" style={{width: '400px', maxWidth: '90vw'}}>
+        <div className="modal-content tutorial-modal-content">
           <div className="modal-header">
             <span className="modal-title">HOW TO USE</span>
             <button className="modal-close" id="tutorial-modal-close">&times;</button>
           </div>
-          <div className="modal-body" style={{textAlign: 'left'}}>
+          <div className="modal-body modal-body-left">
             <p><strong>1. Scenarios:</strong> Select a scenario from the top dropdown to practice specific machine operations.</p>
             <p><strong>2. Instructions:</strong> Follow the steps shown in blue text. If you get it wrong, the system will log an error.</p>
             <p><strong>3. Interactions:</strong></p>
-            <ul style={{marginLeft: '20px', fontSize: '0.85rem', color: '#ccc', marginBottom: '15px'}}>
+            <ul className="tutorial-list">
               <li><strong>Buttons:</strong> Click or tap to push.</li>
               <li><strong>Switches (2/3 positions):</strong> Click to rotate to the next position.</li>
               <li><strong>Hold Actions:</strong> Click/tap and hold the button until the action completes.</li>
@@ -107,16 +108,16 @@ export default function PanelSimulator() {
 
       {/* Success Modal */}
       <div id="success-modal" className="modal-overlay" style={{display: 'none'}}>
-        <div className="modal-content" style={{borderColor: '#28a745', textAlign: 'center'}}>
-          <div className="modal-header" style={{background: '#28a745'}}>
+        <div className="modal-content success-modal-content">
+          <div className="modal-header success-modal-header">
             <span className="modal-title">SCENARIO COMPLETED</span>
             <button className="modal-close" id="success-modal-close">&times;</button>
           </div>
           <div className="modal-body">
-            <div style={{fontSize: '4rem', marginBottom: '10px'}}>âœ…</div>
-            <p style={{color: '#fff', fontSize: '1.2rem', fontWeight: 800, marginBottom: '10px'}}>EXCELLENT WORK!</p>
-            <p id="success-message" style={{color: '#ccc', fontSize: '0.9rem', lineHeight: '1.4'}}>You have successfully completed this training scenario.</p>
-            <button id="success-modal-ok" className="reset-btn" style={{background: '#28a745', marginTop: '20px', width: '100%', padding: '10px', fontSize: '1rem'}}>CONTINUE</button>
+            <div className="success-icon">✅</div>
+            <p className="success-title">EXCELLENT WORK!</p>
+            <p id="success-message" className="success-message">You have successfully completed this training scenario.</p>
+            <button id="success-modal-ok" className="reset-btn success-button">CONTINUE</button>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { scenarios } from '../modules/lockout/data/scenarios';
+import './LockoutLayout.css';
 
 export default function LockoutLayout() {
   const [activeScenario, setActiveScenario] = useState(null);
@@ -46,7 +47,7 @@ export default function LockoutLayout() {
       <aside className="w-full md:w-[320px] bg-[var(--bg-panel)] border-b md:border-b-0 md:border-r border-white/10 flex flex-col backdrop-blur-md z-10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] md:shadow-[4px_0_24px_rgba(0,0,0,0.5)] relative">
         <div className="p-4 md:p-6 border-b border-white/5">
           <div className="flex items-center gap-4 mb-4">
-            <Link to="/" className="flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline" style={{textDecoration: 'none'}}>
+            <Link to="/" className="lockout-home-link flex items-center gap-2 text-[var(--neon-blue)] hover:text-white transition-colors text-sm font-bold uppercase tracking-wider no-underline">
               <span>â†</span> Home
             </Link>
           </div>
@@ -129,8 +130,7 @@ export default function LockoutLayout() {
 
             {/* TCU AREA */}
             <div 
-              className={`absolute border-4 border-dashed border-yellow-400 bg-yellow-400/20 text-white rounded flex justify-center items-center text-lg shadow-[1px_1px_3px_black] transition-all duration-300 ${isActiveTag('TCU AREA') ? 'opacity-100 pointer-events-auto animate-[pulseArea_2s_infinite] z-10' : 'opacity-0 pointer-events-none'}`}
-              style={{ top: '10.15%', left: '46.51%', width: '15%', height: '13%' }}
+              className={`tcu-area absolute border-4 border-dashed border-yellow-400 bg-yellow-400/20 text-white rounded flex justify-center items-center text-lg shadow-[1px_1px_3px_black] transition-all duration-300 ${isActiveTag('TCU AREA') ? 'opacity-100 pointer-events-auto animate-[pulseArea_2s_infinite] z-10' : 'opacity-0 pointer-events-none'}`}
             ></div>
           </div>
         </div>
@@ -159,19 +159,6 @@ export default function LockoutLayout() {
         </div>
       )}
 
-      {/* Global styles for animations that are hard to do inline */}
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes tagPulse {
-          0% { box-shadow: 0 0 10px rgba(255,255,255,0.4); transform: translate(-50%, -50%) scale(1); }
-          50% { box-shadow: 0 0 20px rgba(255,255,255,0.8); transform: translate(-50%, -50%) scale(1.1); }
-          100% { box-shadow: 0 0 10px rgba(255,255,255,0.4); transform: translate(-50%, -50%) scale(1); }
-        }
-        @keyframes pulseArea {
-          0% { box-shadow: 0 0 0 rgba(255, 235, 59, 0.4); }
-          50% { box-shadow: 0 0 20px rgba(255, 235, 59, 0.8); }
-          100% { box-shadow: 0 0 0 rgba(255, 235, 59, 0.4); }
-        }
-      `}} />
     </div>
   );
 }

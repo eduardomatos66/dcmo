@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import './Home.css';
 
 export default function Home() {
   const [showQRModal, setShowQRModal] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg-dark)] text-white"
-         style={{ backgroundImage: 'radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(180, 0, 255, 0.08), transparent 25%)' }}>
-      
+    <div className="home-bg min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg-dark)] text-white">
+
       <div className="max-w-[1200px] mx-auto w-full px-5 py-10 flex flex-col items-center flex-1 relative">
-        <button 
+        <button
           onClick={() => setShowQRModal(true)}
           className="absolute top-5 right-5 text-[0.9rem] px-3 py-2 bg-[rgba(0,240,255,0.1)] border border-[var(--neon-blue)] text-white cursor-pointer rounded-md backdrop-blur-sm flex items-center gap-2 font-semibold z-10"
         >
@@ -67,7 +67,7 @@ export default function Home() {
                 Digital floor plan indicating safety lockout points. Learn where to isolate energy for various maintenance scenarios.
               </p>
               <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#b400ff] uppercase tracking-wide">
-                Launch Layout <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                View Lockout Points <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </div>
           </Link>

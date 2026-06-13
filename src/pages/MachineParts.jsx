@@ -1,9 +1,10 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { initialDcmParts } from '../data/machinePartsData';
 import PartDetails from '../components/machine-parts/PartDetails';
 import InteractiveMap from '../components/machine-parts/InteractiveMap';
 import PartSelectorDropdown from '../components/machine-parts/PartSelectorDropdown';
+import './MachineParts.css';
 
 export default function MachineParts() {
   const [parts, setParts] = useState(initialDcmParts);
@@ -19,8 +20,7 @@ export default function MachineParts() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg-dark)] text-white"
-      style={{ backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(255, 100, 0, 0.08), transparent 25%), radial-gradient(circle at 90% 80%, rgba(255, 0, 100, 0.08), transparent 25%)' }}>
+    <div className="machine-parts-bg min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg-dark)] text-white">
 
       <div className="max-w-[1400px] mx-auto w-full px-5 py-10 flex flex-col items-center flex-1 relative">
         <Link
@@ -58,32 +58,6 @@ export default function MachineParts() {
           />
         </div>
       </div>
-
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.02);
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 100, 0, 0.2);
-          border-radius: 10px;
-          border: 2px solid transparent;
-          background-clip: padding-box;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 100, 0, 0.5);
-          border: 2px solid transparent;
-          background-clip: padding-box;
-        }
-        @keyframes pulseArea {
-          0% { box-shadow: 0 0 0 rgba(255, 235, 59, 0.4); }
-          50% { box-shadow: 0 0 20px rgba(255, 235, 59, 0.8); }
-          100% { box-shadow: 0 0 0 rgba(255, 235, 59, 0.4); }
-        }
-      `}</style>
     </div>
   );
 }
