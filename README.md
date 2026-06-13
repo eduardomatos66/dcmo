@@ -1,6 +1,6 @@
 # DCMO - Die Casting Machine Training Portal
 
-![Simulator Screen Mockup](./assets/screen.png)
+![Simulator Screen Mockup](./public/assets/components/capa.png)
 ## Software Architecture
 
 ```mermaid
