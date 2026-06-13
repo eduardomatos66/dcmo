@@ -27,7 +27,7 @@ export default function MachineParts() {
           to="/"
           className="absolute top-5 left-5 text-[0.9rem] px-3 py-2 bg-[rgba(255,255,255,0.1)] border border-white/20 text-white cursor-pointer rounded-md backdrop-blur-sm flex items-center gap-2 font-semibold hover:bg-white/20 transition-all z-10"
         >
-          â† Back to Home
+          ← Back to Home
         </Link>
 
         <header className="text-center mb-8 relative pt-8 w-full z-30">

@@ -1,4 +1,4 @@
-﻿import { useRef, useState  } from 'react';
+import { useRef, useState  } from 'react';
 
 export default function InteractiveMap({
   parts,
@@ -89,7 +89,7 @@ export default function InteractiveMap({
       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-lg shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-bold text-white font-['Share_Tech_Mono'] flex items-center gap-2">
-            <span className="text-[#ff6400]">ðŸ“</span> Location Map
+            <span className="text-[#ff6400]">📍</span> Location Map
           </h3>
           <button
             onClick={() => setIsMappingMode(!isMappingMode)}
