@@ -55,9 +55,11 @@ export default function PanelSimulator() {
               <span className="training-title font-['Share_Tech_Mono'] text-lg md:text-xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase m-0 font-bold">PANEL SIMULATOR</span>
             </div>
             <div className="training-controls">
-              <label className="highlight-toggle">
-                <input type="checkbox" id="highlight-targets-cb" defaultChecked /> Show Targets
-              </label>
+              {import.meta.env.VITE_SHOW_DEV_TOGGLES === 'true' && (
+                <label className="highlight-toggle">
+                  <input type="checkbox" id="highlight-targets-cb" defaultChecked /> Show Targets
+                </label>
+              )}
               <select id="scenario-selector" className="scenario-selector"></select>
               <button id="reset-scenario-btn" className="reset-btn">Reset</button>
               <button id="tutorial-btn" className="tutorial-btn" title="How to use the simulator">❓ Help</button>

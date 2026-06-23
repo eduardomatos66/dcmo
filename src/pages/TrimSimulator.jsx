@@ -72,26 +72,28 @@ export default function TrimSimulator() {
               )}
             </div>
 
-            <div className="flex gap-2 w-full sm:w-auto shrink-0">
-              <button
-                onClick={toggleDoor}
-                className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded shadow-sm border transition-colors ${sensors.DOOR_LEFT_OPEN || sensors.DOOR_RIGHT_OPEN
-                  ? 'bg-red-900/80 border-red-500 text-red-200'
-                  : 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700'
-                  }`}
-              >
-                Toggle Doors
-              </button>
-              <button
-                onClick={toggleLightCurtain}
-                className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded shadow-sm border transition-colors ${sensors.LIGHT_CURTAIN_BLOCKED
-                  ? 'bg-red-900/80 border-red-500 text-red-200'
-                  : 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700'
-                  }`}
-              >
-                Block Light Curtain
-              </button>
-            </div>
+            {import.meta.env.VITE_SHOW_DEV_TOGGLES === 'true' && (
+              <div className="flex gap-2 w-full sm:w-auto shrink-0">
+                <button
+                  onClick={toggleDoor}
+                  className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded shadow-sm border transition-colors ${sensors.DOOR_LEFT_OPEN || sensors.DOOR_RIGHT_OPEN
+                    ? 'bg-red-900/80 border-red-500 text-red-200'
+                    : 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700'
+                    }`}
+                >
+                  Toggle Doors
+                </button>
+                <button
+                  onClick={toggleLightCurtain}
+                  className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded shadow-sm border transition-colors ${sensors.LIGHT_CURTAIN_BLOCKED
+                    ? 'bg-red-900/80 border-red-500 text-red-200'
+                    : 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700'
+                    }`}
+                >
+                  Block Light Curtain
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="w-full relative h-[45vh] xl:flex-1 xl:min-h-0 rounded-xl overflow-hidden border border-gray-700">
