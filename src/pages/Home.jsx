@@ -5,7 +5,7 @@ import './Home.css';
 export default function Home() {
   const [showQRModal, setShowQRModal] = useState(false);
 
-  const activeModulesStr = import.meta.env.VITE_ACTIVE_MODULES || 'parts,panel,lockout,trim,cycles';
+  const activeModulesStr = import.meta.env.VITE_ACTIVE_MODULES || 'parts,panel,lockout';
   const activeModulesArr = activeModulesStr.split(',').map(m => m.trim().toLowerCase());
 
   const enabledModules = {

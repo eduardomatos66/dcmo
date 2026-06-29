@@ -8,10 +8,11 @@ export default function BiscuitSimulator() {
   const [controlLeft, setControlLeft] = useState(true);
   const [controlRight, setControlRight] = useState(false);
 
-  const [pumpLeft, setPumpLeft] = useState(false);
+  const [pumpLeft, setPumpLeft] = useState(true);
   const [pumpRight, setPumpRight] = useState(false);
 
   const [productionRunning, setProductionRunning] = useState(false);
+  const [hasStartedProduction, setHasStartedProduction] = useState(false);
   const [gateOpen, setGateOpen] = useState(false);
 
   const [ladlePos, setLadlePos] = useState('home');
@@ -23,6 +24,7 @@ export default function BiscuitSimulator() {
   const [gateSwitchStep, setGateSwitchStep] = useState(1); // 0: left(open), 1: center(0), 2: right(close), 3: center(0)
 
   const logsEndRef = useRef(null);
+  const innerTimerRef = useRef(null);
 
   const addLog = useCallback((text, type = 'normal') => {
     setLogs(prev => [...prev, { id: Date.now(), text, type }]);
@@ -51,15 +53,17 @@ export default function BiscuitSimulator() {
       } else if (ladlePos === 'moving-to-pour') {
         timer = setTimeout(() => setLadlePos('pouring'), 1500);
       } else if (ladlePos === 'pouring') {
-        setBiscuits(prev => {
-          if (prev.length >= 12) return prev;
-          return [...prev, {
-            id: Date.now(),
-            x: Math.random() * 60 + 10,
-            y: Math.random() * 60 + 10
-          }];
-        });
-        timer = setTimeout(() => setLadlePos('returning'), 1000);
+        timer = setTimeout(() => {
+          setBiscuits(prev => {
+            if (prev.length >= 12) return prev;
+            return [...prev, {
+              id: Date.now(),
+              x: Math.random() * 50 + 25,
+              y: Math.random() * 40 + 30
+            }];
+          });
+          innerTimerRef.current = setTimeout(() => setLadlePos('returning'), 800);
+        }, 1200);
       } else if (ladlePos === 'returning') {
         timer = setTimeout(() => setLadlePos('home'), 1500);
       }
@@ -70,7 +74,10 @@ export default function BiscuitSimulator() {
         timer = setTimeout(() => setLadlePos('home'), 1500);
       }
     }
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (innerTimerRef.current) clearTimeout(innerTimerRef.current);
+    };
   }, [productionRunning, ladlePos]);
 
 
@@ -141,6 +148,7 @@ export default function BiscuitSimulator() {
       return;
     }
     setProductionRunning(true);
+    setHasStartedProduction(true);
     addLog('Production Cycle STARTED.', 'success');
   };
 
@@ -188,7 +196,7 @@ export default function BiscuitSimulator() {
   const handleToggleGateSwitch = () => {
     // Determine intention based on current gate state
     const pos = gateOpen ? 'right' : 'left';
-    
+
     if (pos === 'left') {
       if (!controlRight || !pumpRight || ladlePos !== 'home' || productionRunning) {
         addLog('Gate open command FAILED (Check power/pump/ladle).', 'error');
@@ -267,7 +275,14 @@ export default function BiscuitSimulator() {
           <div className="control-group">
             <div className="control-label">PRODUCTION</div>
             <div className="btn-row flex gap-4">
-              <button className={`btn-push color-green ${productionRunning ? 'active' : ''}`} onClick={handleStartProduction}></button>
+              <div className="relative">
+                {!hasStartedProduction && !productionRunning && !gameOver && (
+                  <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[#237727] animate-bounce whitespace-nowrap font-bold text-sm pointer-events-none drop-shadow-[0_0_8px_rgba(0,255,65,0.8)] z-10">
+                    ↑ START
+                  </div>
+                )}
+                <button className={`btn-push color-green ${productionRunning ? 'active' : ''}`} onClick={handleStartProduction}></button>
+              </div>
               <button className="btn-push color-red" onClick={handleStopProduction}></button>
             </div>
             <div className="control-options" style={{ gap: '15px', marginTop: '8px' }}><span>START</span><span>STOP</span></div>
@@ -279,9 +294,41 @@ export default function BiscuitSimulator() {
           <div className="dcm-base w-full h-full relative">
             <div className="absolute top-2 left-2 text-[#555] font-mono text-xs tracking-widest font-bold">DCM SCHEMATIC VIEW</div>
 
+            {!productionRunning && !gameOver && (
+              <div className="absolute top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-900/90 border-2 border-red-500 text-white p-4 rounded-lg text-center z-[100] w-[85%] max-w-[400px] shadow-[0_0_30px_rgba(255,0,0,0.6)] backdrop-blur-sm animate-pulse flex flex-col items-center">
+                <span className="text-4xl mb-2">⚠️</span>
+                <h3 className="font-bold text-xl mb-2 text-red-300 font-['Share_Tech_Mono'] tracking-wide">MACHINE IDLE</h3>
+                <p className="text-sm text-gray-200 mb-2 leading-relaxed">The machine is NOT producing parts. You are losing money every second!</p>
+                <p className="text-sm font-bold text-[#ffcc00] mt-3 bg-black/40 px-3 py-1 rounded border border-[#ffcc00]/30">Resolve the issue and START production quickly!</p>
+              </div>
+            )}
+
+            {biscuits.length > 5 && !gameOver && (
+              <div className="absolute bottom-[20%] left-1/2 transform -translate-x-1/2 bg-red-600 text-white font-bold text-sm p-3 rounded-lg border-2 border-red-400 animate-pulse z-[110] shadow-[0_0_20px_rgba(255,0,0,0.8)] w-[90%] text-center">
+                ⚠️ DANGER: {biscuits.length} biscuits accumulated! Stop the Production Cycle and clean the scrap conveyor via the Operator Side immediately, or the DCM will be damaged!
+              </div>
+            )}
+
+            <div className="dcm-furnace">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-[0.6rem] font-bold text-[#bbb] whitespace-nowrap">FURNACE</div>
+              <div className="molten-bath"></div>
+              <div className="ingot-pile">
+                <div className="ingot ingot-base-1"></div>
+                <div className="ingot ingot-base-2"></div>
+                <div className="ingot ingot-base-3"></div>
+                <div className="ingot ingot-mid-1"></div>
+                <div className="ingot ingot-mid-2"></div>
+                <div className="ingot ingot-top"></div>
+              </div>
+            </div>
+
             <div className="dcm-die-area">
               <div className="die-fixed">3rd Plate</div>
               <div className="die-moving">Moving Platen</div>
+            </div>
+
+            <div className="dcm-pour-station">
+              <div className="pour-station-label">SHOT SLEEVE</div>
             </div>
 
             <div className={`dcm-ladle pos-${ladlePos}`}>
@@ -312,6 +359,10 @@ export default function BiscuitSimulator() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="absolute bottom-1 right-2 text-[#555] text-[0.55rem] text-right pointer-events-none max-w-[250px] leading-tight italic">
+              * Simplified view of the DCM and HMI to facilitate the understanding of the process.
             </div>
 
           </div>
