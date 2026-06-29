@@ -52,7 +52,7 @@ export default function PanelSimulator() {
                 <span>←</span> Home
               </Link>
               <div className="vertical-divider"></div>
-              <span className="training-title font-['Share_Tech_Mono'] text-lg md:text-xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase m-0 font-bold">PANEL SIMULATOR</span>
+              <span className="training-title font-['Share_Tech_Mono'] text-lg md:text-xl bg-gradient-to-br from-[var(--neon-blue)] to-[#b400ff] bg-clip-text text-transparent tracking-widest uppercase m-0 font-bold">HMI SIMULATOR</span>
             </div>
             <div className="training-controls">
               {import.meta.env.VITE_SHOW_DEV_TOGGLES === 'true' && (
@@ -88,7 +88,7 @@ export default function PanelSimulator() {
       </div>
 
       {/* Tutorial Modal */}
-      <div id="tutorial-modal" className="modal-overlay" style={{display: 'none'}}>
+      <div id="tutorial-modal" className="modal-overlay" style={{ display: 'none' }}>
         <div className="modal-content tutorial-modal-content">
           <div className="modal-header">
             <span className="modal-title">HOW TO USE</span>
@@ -109,7 +109,7 @@ export default function PanelSimulator() {
       </div>
 
       {/* Success Modal */}
-      <div id="success-modal" className="modal-overlay" style={{display: 'none'}}>
+      <div id="success-modal" className="modal-overlay" style={{ display: 'none' }}>
         <div className="modal-content success-modal-content">
           <div className="modal-header success-modal-header">
             <span className="modal-title">SCENARIO COMPLETED</span>

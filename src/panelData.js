@@ -602,7 +602,7 @@
   {
     "row": 6,
     "col": 10,
-    "label": "PANEL CONTROL ENABLE",
+    "label": "HMI CONTROL ENABLE",
     "type": "Pilot light indicator",
     "color": "White"
   },

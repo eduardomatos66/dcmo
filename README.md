@@ -10,7 +10,7 @@ graph TD
     
     C --> D[Home Page]
     C --> E[Machine Parts Module]
-    C --> F[Panel Simulator Module]
+    C --> F[HMI Simulator Module]
     C --> G[Lockout Layout Module]
     C --> H[Trim Press Sim Module]
     
@@ -43,7 +43,7 @@ The portal is divided into several specialized interactive modules:
 1. **DCM Parts**
    - Explore the core components and systems of Die Casting Machines.
    - Interactive visual map to learn part locations and functions.
-2. **Panel Simulator**
+2. **HMI Simulator**
    - Interactive 3D-like digital replica of the machine's control panel.
    - Realistic simulation of momentary push buttons, guarded toggles, pilot lights, 3-position switches, and infinite-scroll 12-position rotary dials.
    - Dynamic scenario engine with visual feedback (Purple for interaction, Yellow for visual checks).

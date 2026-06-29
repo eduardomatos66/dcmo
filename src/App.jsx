@@ -1,9 +1,11 @@
-﻿import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import PanelSimulator from './pages/PanelSimulator';
 import LockoutLayout from './pages/LockoutLayout';
 import TrimSimulator from './pages/TrimSimulator';
 import MachineParts from './pages/MachineParts';
+import DcmCycles from './pages/DcmCycles';
+import BiscuitSimulator from './pages/BiscuitSimulator';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/lockout-layout" element={<LockoutLayout />} />
         <Route path="/trim-simulator" element={<TrimSimulator />} />
         <Route path="/machine-parts" element={<MachineParts />} />
+        <Route path="/cycles" element={<DcmCycles />} />
+        <Route path="/biscuit" element={<BiscuitSimulator />} />
       </Routes>
     </Router>
   );

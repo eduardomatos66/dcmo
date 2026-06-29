@@ -5,6 +5,18 @@ import './Home.css';
 export default function Home() {
   const [showQRModal, setShowQRModal] = useState(false);
 
+  const activeModulesStr = import.meta.env.VITE_ACTIVE_MODULES || 'parts,panel,lockout,trim,cycles';
+  const activeModulesArr = activeModulesStr.split(',').map(m => m.trim().toLowerCase());
+
+  const enabledModules = {
+    parts: activeModulesArr.includes('parts'),
+    panel: activeModulesArr.includes('panel'),
+    lockout: activeModulesArr.includes('lockout'),
+    trim: activeModulesArr.includes('trim'),
+    cycles: activeModulesArr.includes('cycles'),
+    biscuit: activeModulesArr.includes('biscuit')
+  };
+
   return (
     <div className="home-bg min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg-dark)] text-white">
 
@@ -28,64 +40,110 @@ export default function Home() {
 
         <main className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-[1100px]">
           {/* Machine Parts Card */}
-          <Link to="/machine-parts" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
-            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,100,0,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <img src="/assets/components/capa.png" alt="DCM Parts" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
-              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">DCM Parts</h2>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
-                Explore the core components and systems of Die Casting Machines and learn their functions.
-              </p>
-              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ff6400] uppercase tracking-wide">
-                View Components <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </div>
-          </Link>
+          {enabledModules.parts && (
+            <Link to="/machine-parts" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+              <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,100,0,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col h-full">
+                <img src="/assets/components/capa.png" alt="DCM Parts" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
+                <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">DCM Parts</h2>
+                <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                  Explore the core components and systems of Die Casting Machines and learn their functions.
+                </p>
+                <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ff6400] uppercase tracking-wide">
+                  View Components <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          )}
 
-          {/* Panel Simulator Card */}
-          <Link to="/panel" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
-            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <img src="/assets/PanelModule.png" alt="Panel Simulator" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
-              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Panel Simulator</h2>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
-                Interactive 3D-like digital replica of the machine's control panel. Practice real-world scenarios and button operations.
-              </p>
-              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[var(--neon-blue)] uppercase tracking-wide">
-                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </div>
-          </Link>
+          {/* HMI Simulator Card */}
+          {enabledModules.panel && (
+            <Link to="/panel" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+              <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col h-full">
+                <img src="/assets/PanelModule.png" alt="HMI Simulator" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
+                <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">HMI Simulator</h2>
+                <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                  Interactive 3D-like digital replica of the machine's control panel. Practice real-world scenarios and button operations.
+                </p>
+                <span className="inline-flex items-center text-[0.95rem] font-semibold text-[var(--neon-blue)] uppercase tracking-wide">
+                  Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          )}
 
           {/* Lockout Layout Card */}
-          <Link to="/lockout-layout" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
-            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(180,0,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <img src="/assets/LockoutModule.png" alt="Lockout Layout" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
-              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Lockout Layout</h2>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
-                Digital floor plan indicating safety lockout points. Learn where to isolate energy for various maintenance scenarios.
-              </p>
-              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#b400ff] uppercase tracking-wide">
-                View Lockout Points <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </div>
-          </Link>
+          {enabledModules.lockout && (
+            <Link to="/lockout-layout" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+              <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(180,0,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col h-full">
+                <img src="/assets/LockoutModule.png" alt="Lockout Layout" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
+                <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Lockout Layout</h2>
+                <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                  Digital floor plan indicating safety lockout points. Learn where to isolate energy for various maintenance scenarios.
+                </p>
+                <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#b400ff] uppercase tracking-wide">
+                  View Lockout Points <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          )}
 
           {/* Trim Press Simulator Card */}
-          <Link to="/trim-simulator" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
-            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,255,100,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <img src="/assets/TrimPressModule.png" alt="Trim Press Simulator" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
-              <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Trim Press Sim</h2>
-              <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
-                Full 3D digital twin of a trim press with live simulation and operational controls.
-              </p>
-              <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#00ff64] uppercase tracking-wide">
-                Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </div>
-          </Link>
+          {enabledModules.trim && (
+            <Link to="/trim-simulator" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+              <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(0,255,100,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col h-full">
+                <img src="/assets/TrimPressModule.png" alt="Trim Press Simulator" className="w-full h-40 object-contain p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30" />
+                <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Trim Press Sim</h2>
+                <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                  Full 3D digital twin of a trim press with live simulation and operational controls.
+                </p>
+                <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#00ff64] uppercase tracking-wide">
+                  Launch Simulator <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          )}
+
+          {/* DCM Cycles Card */}
+          {enabledModules.cycles && (
+            <Link to="/cycles" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+              <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,200,0,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-full h-40 flex items-center justify-center p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30 text-6xl drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                  ⚙️
+                </div>
+                <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">DCM Cycles</h2>
+                <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                  Learn the fundamental phases of the Die Casting Machine process and what happens during each cycle step.
+                </p>
+                <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ffc800] uppercase tracking-wide">
+                  View Cycles <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          )}
+
+          {/* Biscuit Jam Simulator Card */}
+          {enabledModules.biscuit && (
+            <Link to="/biscuit" className="group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col backdrop-blur-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-white/20 min-h-[320px]">
+              <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,50,50,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-full h-40 flex items-center justify-center p-2 rounded-lg mb-5 border border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] bg-black/30 text-6xl drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                  🧹
+                </div>
+                <h2 className="text-3xl font-semibold mb-4 tracking-tight text-white">Biscuit Jam</h2>
+                <p className="text-slate-400 leading-relaxed mb-8 flex-grow">
+                  Practice the correct safety procedure (LOTO) to clean accumulated biscuits from the DCM scrap conveyor.
+                </p>
+                <span className="inline-flex items-center text-[0.95rem] font-semibold text-[#ff3232] uppercase tracking-wide">
+                  Start Simulation <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          )}
 
         </main>
 
@@ -94,6 +152,8 @@ export default function Home() {
           <p className="mt-2 text-xs text-[var(--neon-blue)] opacity-70">Developed by Eduardo Matos</p>
         </footer>
       </div>
+
+
 
       {/* QR Code Modal */}
       {showQRModal && (

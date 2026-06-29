@@ -1,6 +1,6 @@
 # Trim Press Simulator Module
 
-The **Trim Press Simulator** acts as the companion training module to the main DCM Panel Simulator, focusing specifically on the trim press machinery.
+The **Trim Press Simulator** acts as the companion training module to the main DCM HMI Simulator, focusing specifically on the trim press machinery.
 
 ## Overview
 After the die casting process, parts are typically moved to a trim press. This module ensures operators are equally familiar with the secondary operational controls and safety protocols of the trim press equipment.
@@ -12,4 +12,4 @@ After the die casting process, parts are typically moved to a trim press. This m
 
 ## Technical Details
 - **Main Entry**: `src/pages/TrimSimulator.jsx`
-- **Architecture**: Follows a similar architectural pattern to the main Panel Simulator, leveraging React for the wrapper and UI, while utilizing core JavaScript logic to handle the state machine and simulation feedback.
+- **Architecture**: Follows a similar architectural pattern to the main HMI Simulator, leveraging React for the wrapper and UI, while utilizing core JavaScript logic to handle the state machine and simulation feedback.

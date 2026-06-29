@@ -1,6 +1,6 @@
-# Panel Simulator Module
+# HMI Simulator Module
 
-The **Panel Simulator** is the core interactive module of the DCMO portal. It provides a risk-free, highly realistic digital twin of the Die Casting Machine's physical control panel.
+The **HMI Simulator** is the core interactive module of the DCMO portal. It provides a risk-free, highly realistic digital twin of the Die Casting Machine's physical control panel.
 
 ## Overview
 Operators use this module to practice complex operational sequences, respond to machine states, and memorize the location of buttons and switches without the risk of damaging real equipment.
